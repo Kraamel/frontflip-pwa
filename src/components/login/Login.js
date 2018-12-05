@@ -43,8 +43,11 @@ let Login = inject("authStore")(observer(class Login extends React.Component {
 
         return (
             <Grid className={'form'} container item direction='column' alignItems={'stretch'} justify='space-around'>
-                <Grid item>
-                    <ButtonRadius color='secondary'> Connect with google </ButtonRadius>
+                <Grid item >
+                    <ButtonRadius style={{backgroundColor:'white', position:'relative'}}>
+                        <img src="https://developers.google.com/identity/images/g-logo.png" style={{width:'25px', height: '25px', position:'absolute', left: '7px'}} alt="google"/>
+                        <Typography> connect with google</Typography>
+                    </ButtonRadius>
                 </Grid>
                 <Typography style={{fontSize:'1rem', fontWeight: '500'}}> or </Typography>
                 <Grid item >

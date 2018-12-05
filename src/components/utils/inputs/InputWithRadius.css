@@ -7,3 +7,13 @@
     border-radius: 30px;
     border-color: rgba(0, 0, 0, 0.23);
 }
+
+.MuiFormControl-marginNormal-302 {
+    margin-bottom: 5px !important;
+    margin-top: 0 !important;
+}
+
+.textField {
+    width: 100%;
+    min-height: 50px;
+}

@@ -24,9 +24,10 @@ let SignUp = inject("authStore")(observer(class SignUp extends React.Component {
         const {values, errors, inProgress} = window.self.props.authStore;
         return (
             <Grid className={'form'} container item direction='column' justify='space-around' alignItems="stretch">
-                <Grid item>
-                    <ButtonRadius color='secondary'> Connect with google </ButtonRadius>
-                </Grid>
+                <ButtonRadius style={{backgroundColor:'white', position:'relative'}}>
+                    <img src="https://developers.google.com/identity/images/g-logo.png" style={{width:'25px', height: '25px', position:'absolute', left: '7px'}} alt="google"/>
+                    <Typography> connect with google</Typography>
+                </ButtonRadius>
                 <Typography style={{fontSize:'1rem', fontWeight: '500'}}> or </Typography>
                 <Grid item>
                     <Input

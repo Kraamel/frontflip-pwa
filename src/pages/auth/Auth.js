@@ -1,8 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import Logo from '../components/utils/logos/Logo';
-import Form from '../components/login/Form';
+import Logo from '../../components/utils/logos/Logo';
+import Form from '../../components/login/Form';
 
 import './Auth.css'
 
