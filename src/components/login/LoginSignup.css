@@ -1,9 +1,0 @@
-.form {
-    flex-grow: 1;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1rem 15px;
-    height: 49vh;
-    overflow: hidden;
-}

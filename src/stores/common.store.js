@@ -28,7 +28,11 @@ class CommonStore {
     }
     
     setCookie(name, value, expires) {
-        cookies.set(name, value, (expires ? {expires: expires} : null));
+        if(process.env.NODE_ENV === 'production'){
+            cookies.set(name, value, (expires ? {expires: expires, path: '/', domain: 'wingzy.com'} : {path: '/', domain: 'wingzy.com'}));
+        }else{
+            cookies.set(name, value, (expires ? {expires: expires, path: '/'} : {path: '/'}));
+        }
     }
 
     getCookie(name) {
@@ -85,13 +89,16 @@ class CommonStore {
 
 decorate(CommonStore, {
     appName: observable,
-    token: observable,
+    accessToken: observable,
+    refreshToken: observable,
     algoliaKey: observable,
     algoliaKeyValidity: observable,
     appLoaded: observable,
     setToken: action,
     setAlgoliaKey: action,
-    setAppLoaded: action
+    setAppLoaded: action,
+    getCookie: action,
+    setCookie: action
 });
 
 export default new CommonStore();

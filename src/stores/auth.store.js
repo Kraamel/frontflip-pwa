@@ -2,6 +2,8 @@ import { observable, action, decorate } from "mobx";
 import agent from '../agent';
 import commonStore from "./common.store";
 import userStore from "./user.store";
+import organisationStore from "./organisation.store";
+import emailService from "../services/email.service";
 
 class AuthStore {
     inProgress = false;
@@ -32,6 +34,20 @@ class AuthStore {
         this.values.invitationCode = '';
     }
 
+    isAuth() {
+        if(commonStore.getAccessToken() || commonStore.getRefreshToken()){
+            return userStore.getCurrentUser()
+            .then(() => {
+                return true;
+            }).catch(() => {
+                return false;
+            })
+        }else{
+            return Promise.resolve(false);
+        }
+    }
+
+    
     /**
      * @description Call authentification service to fetch tokens
      */
@@ -43,7 +59,8 @@ class AuthStore {
             .then((response) => {   
                 if(response && response.access_token){
                     commonStore.setAuthTokens(response);
-                    return 200;
+                    return userStore.getCurrentUser()
+                    .then(()=> {return 200;});
                 } 
                 else return 403;
             })
@@ -63,15 +80,21 @@ class AuthStore {
 
         return agent.Auth.register(this.values.email, this.values.password)
             .then((data) => {
-                console.log(data.message);
-                console.log(data.user);
-                // if an orgTag is provided, register user to the org ?
+                return this.login(this.values.email, this.values.password)
+                .then((respLogin) => {
+                    console.log('org tag : ' + organisationStore.values.orgTag);
+                    return emailService.confirmLoginEmail(organisationStore.values.orgTag)
+                    .then((respEmail) => {
+                        console.log('email sended');
+                        return true;
+                    });
+                });
             })
             .catch(action((err) => {
                 // any other response status than 20X is an error
-                console.log(err.response.body);
-                console.log(err.status);
+                console.log(err);
                 this.errors = err;
+                throw err;
             }))
             .finally(action(() => {this.inProgress = false; }));
     }
@@ -84,23 +107,49 @@ class AuthStore {
         this.inProgress = true;
         this.errors = null;
 
-        return agent.Auth.authorization(this.values.email, this.values.password, this.values.orgTag, this.values.invitationCode)
+        return agent.Auth.registerToOrg(organisationStore.values.organisation._id, this.values.invitationCode || null)
             .then((data) => {
-                console.log(data.message);
-                console.log(data.user);
-                console.log(data.organisation);
+                return true;
             })
             .catch(action((err) => {
                 console.log(err.response.body);
                 console.log(err.status);
                 this.errors = err;
+                throw err;
             }))
             .finally(action(() => {this.inProgress = false; }));
     }
 
-    logout() {
-        console.log('will logout');
+    passwordForgot() {
+        this.inProgress = true;
+        this.errors = null;
 
+        return agent.Email.passwordForgot(this.values.email)
+            .then((data) => {
+                return data;
+            })
+            .catch(action((err) => {
+                console.log(err);
+                this.errors = err;
+            }))
+            .finally(action(() => {this.inProgress = false; }));   
+    }
+    updatePassword(token, hash) {
+        this.inProgress = true;
+        this.errors = null;
+
+        return agent.Email.updatePassword(token, hash, this.values.password)
+            .then((data) => {
+                return data;
+            })
+            .catch((err) => {
+                this.errors = err;
+                return err.response;
+            })
+            .finally(action(() => {this.inProgress = false; }));      
+    }
+
+    logout() {
         commonStore.removeAuthTokens();
         userStore.forgetUser();
         return Promise.resolve();

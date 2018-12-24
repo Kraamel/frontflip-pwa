@@ -5,8 +5,8 @@ import commonStore from './stores/common.store';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 //const API_ROOT_AUTH = 'https://auth-wingzy-staging.herokuapp.com';
-const API_ROOT_AUTH = 'http://localhost:3001'
-const API_ROOT = 'http://localhost:3000';
+const API_ROOT_AUTH = process.env.REACT_APP_API_ROOT_AUTH;
+const API_ROOT = process.env.REACT_APP_API_ROOT;
 
 const handleErrors = err => {
     if (err && err.response && err.response.status === 401) {
@@ -34,7 +34,7 @@ const requests = {
         return validateToken()
         .then(()=>
             superagent
-            .del(`${url}`)
+            .del((process.env.NODE_ENV == 'development' ? 'http://' : 'https://') + `${url}`)
             .use(tokenPlugin)
             .end(handleErrors)
             .then(responseBody)
@@ -45,7 +45,7 @@ const requests = {
         return validateToken()
         .then(()=>
             superagent
-            .get(`${url}`)
+            .get((process.env.NODE_ENV == 'development' ? 'http://' : 'https://') + `${url}`)
             .use(tokenPlugin)
             .end(handleErrors)
             .then(responseBody)
@@ -56,7 +56,7 @@ const requests = {
         return validateToken()
         .then( () => 
             superagent
-            .put(`${url}`, body)
+            .put((process.env.NODE_ENV == 'development' ? 'http://' : 'https://') + `${url}`, body)
             .use(tokenPlugin)
             .end(handleErrors)
             .then(responseBody)
@@ -67,7 +67,7 @@ const requests = {
         return validateToken()
         .then( () => 
             superagent
-            .post(`${url}`, body)
+            .post((process.env.NODE_ENV == 'development' ? 'http://' : 'https://') + `${url}`, body)
             .use(tokenPlugin)
             .end(handleErrors)
             .then(responseBody)
@@ -82,7 +82,7 @@ let validateToken = () => {
     if (commonStore.getRefreshToken() && !commonStore.getAccessToken()) {
         return new Promise( (resolve, reject) => {
             superagent.post(
-                `${API_ROOT_AUTH}/auth/locale`,
+                `${API_ROOT_AUTH}/locale`,
                 {
                     client_id: 'frontflip',
                     client_secret: 'abcd1234',
@@ -103,11 +103,15 @@ let validateToken = () => {
 
 /**
  * @description Authentification actions
+ *              We have 2 levels of register / login :
+ *              - register to Wingzy (classic)
+ *              - register to an Organisation of Wingzy
+ *              1 User can have many Organisation
  */
 const Auth = {
     login: (email, password) => 
         requests.post(
-            `${API_ROOT_AUTH}/auth/locale`,
+            `${API_ROOT_AUTH}/locale`,
             {
                 username: email,
                 password: password,
@@ -124,18 +128,32 @@ const Auth = {
                 password: password
             }
         ),
-    authorization: (email, password, orgTag, invitationCode) =>
+    registerToOrg: (orgId, invitationCode) =>
         requests.post(
-            `${API_ROOT_AUTH}/authorization/organisation/`+orgTag+`/`+(invitationCode ? invitationCode : ``),
-            {
-                username: email,
-                password: password,
-                client_id: 'frontflip',
-                client_secret: 'abcd1234',
-                grant_type: 'password'
-            }
+            `${API_ROOT_AUTH}/register/organisation/`+orgId+`/`+(invitationCode ? invitationCode : '')
         )
 };
+
+const User = {
+    getCurrent: () =>
+        requests.get(
+            API_ROOT+'/api/users/current'
+        ),
+    updateCurrent: (user) => 
+        requests.put(
+            API_ROOT+'/api/users/',
+            {
+                user: user
+            }
+        ),
+    update: (userId, user) =>
+        requests.put(
+            API_ROOT+'/api/users/'+userId,
+            {
+                user: user
+            }
+        )
+}
 
 const Record = {
     get: (recordId) => 
@@ -180,6 +198,30 @@ const Organisation = {
 }
 
 /**
+ * @description Email API
+ */
+const Email = {
+    confirmLoginEmail: (orgTag) => 
+        requests.post(
+            API_ROOT+'/api/emails/confirmation/' + (orgTag ? orgTag : '')
+        ),
+    passwordForgot: (userEmail) => 
+        requests.post(
+            API_ROOT+'/api/emails/password',
+            {
+                userEmail: userEmail
+            }
+        ),
+    updatePassword: (token, hash, password) =>
+        requests.post(
+            API_ROOT_AUTH+'/password/reset/'+token+'/'+hash,
+            {
+                password: password
+            }
+        )
+}   
+
+/**
  * @description Test get user with secure call to API
  */
 const Test = {
@@ -191,5 +233,7 @@ export default {
     Auth,
     Test,
     Record,
-    Organisation
+    Organisation,
+    User,
+    Email
 }

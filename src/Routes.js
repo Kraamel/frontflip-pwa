@@ -1,8 +1,13 @@
 import React from "react";
 import { Route, Switch } from 'react-router-dom';
-import { Home } from './pages/Home';
+import Home from './pages/Home';
 import { Search } from './pages/Search';
 import Profile from './components/profile/ProfileBox';
+import OnboardWingzy from './pages/OnboardWingzy';
+import OnboardProfile from './pages/OnboardProfile';
+import RedirectUser from "./pages/RedirectUser";
+import PasswordForgot from "./pages/auth/PasswordForgot";
+import PasswordReset from "./pages/auth/PasswordReset";
 
 export default class Routes extends React.Component {
     
@@ -12,7 +17,12 @@ export default class Routes extends React.Component {
                 <div>
                     <Switch>
                         {/* HOME PART */}
-                        <Route exact path="/" component={Home} />
+                        <Route exact path="/:organisationTag" component={Home} />
+                        <Route exact path="/password/forgot" component={PasswordForgot}/>
+                        <Route exact path="/password/reset/:token/:hash" component={PasswordReset}/> 
+
+                        <Route path="/redirect" component={RedirectUser} />
+
                         <Route path="/pricing" component={null} />
                         <Route path="/terms" component={null} />
                         <Route path="/protectingYourData" component={null} />
@@ -21,15 +31,10 @@ export default class Routes extends React.Component {
                         <Route path="/login/:action" component={null} />
 
                         {/* Onboard : new wingzy*/}
-                        <Route path="/wingzy/intro" component={null} />
-                        <Route path="/wingzy/create" component={null} />
-                        <Route path="/wingzy/congratulations" component={null} />
+                        <Route path="/onboard/wingzy" component={OnboardWingzy} />
 
                         {/* Onboard : new profile */}
-                        <Route path="/onboard/welcome" component={null} />
-                        <Route path="/onboard/intro" component={null} />
-                        <Route path="/onboard/hashtags" component={null} />
-                        <Route path="/onboard/links" component={null} />
+                        <Route path="/onboard/profile" component={OnboardProfile} />
 
                         {/* Invitation */}
                         <Route path="/invite" component={null} />
@@ -44,7 +49,8 @@ export default class Routes extends React.Component {
                         {/* Wingzy admin */}
                         <Route path="/admin/organisation" component={null} />
                         <Route path="/admin/user/list" component={null} />
-                        
+                        {/* 404 Handle */}
+                        <Route path="*" status={404} component={Home}/>
                     </Switch>
                 </div>
 

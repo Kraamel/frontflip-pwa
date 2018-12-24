@@ -32,7 +32,7 @@ class RecordStore {
         this.errors = null;
 
         return agent.Record.get(this.values.recordId)
-            .then(data => { this.values.record = data? data.record : {};})
+            .then(data => { console.log('data recieve : ' + data); this.values.record = (data? data.record : {});})
             .catch(action((err) => {
                 this.errors = err.response && err.response.body && err.response.body.errors;
                 throw err;
@@ -48,7 +48,7 @@ class RecordStore {
         this.errors = null;
 
         return agent.Record.post(this.values.orgId, this.values.record)
-            .then(data => { this.values.record = data? data.record : {};})
+            .then(data => { this.values.record = (data? data.record : {});})
             .catch(action((err) => {
                 this.errors = err.response && err.response.body && err.response.body.errors;
                 throw err;
@@ -64,7 +64,7 @@ class RecordStore {
         this.errors = null;
 
         return agent.Record.put(this.values.orgId, this.values.recordId, this.values.record)
-            .then(data => { this.values.record = data? data.record : {};})
+            .then(data => { this.values.record = (data? data.record : {});})
             .catch(action((err) => {
                 this.errors = err.response && err.response.body && err.response.body.errors;
                 throw err;
@@ -99,7 +99,7 @@ decorate(RecordStore, {
     values: observable,
     setOrgId: action,
     reset: action,
-    setrecordId: action,
+    setRecordId: action,
     setRecord: action,
     getRecord: action,
     postRecord: action,

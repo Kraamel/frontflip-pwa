@@ -3,23 +3,23 @@ import agent from '../agent';
 
 class UserStore {
 
-    currentUser;
-    loadingUser;
-    updatingUser;
-    updatingUserErrors;
+    inProgress = false;
+    errors = null;
+    values = {
+        currentUser: {}
+    };
 
-    pullUser() {
-        this.loadingUser = true;
-        return agent.Auth.current()
-        .then(action(({ user }) => { this.currentUser = user; }))
-        .finally(action(() => { this.loadingUser = false; }))
-    }
+    getCurrentUser() {
+        this.inProgress = true;
+        this.errors = null;
 
-    updateUser(newUser) {
-        this.updatingUser = true;
-        return agent.Auth.save(newUser)
-        .then(action(({ user }) => { this.currentUser = user; }))
-        .finally(action(() => { this.updatingUser = false; }))
+        return agent.User.getCurrent()
+            .then(data => { this.values.currentUser = (data? data.user : {});})
+            .catch(action((err) => {
+                this.errors = err.response && err.response.body && err.response.body.errors;
+                throw err;
+            }))
+            .finally(action(()=> { this.inProgress = false; }));
     }
 
     forgetUser() {
@@ -28,11 +28,10 @@ class UserStore {
 
 }
 decorate(UserStore, {
-    currentUser: observable,
-    loadingUser: observable,
-    updatingUser: observable,
-    updatingUserErrors: observable,
-    pullUser: action,
+    inProgress: observable,
+    errors: observable,
+    values: observable,
+    getCurrentUser: action,
     updateUser: action,
     forgetUser: action
 });

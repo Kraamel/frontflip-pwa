@@ -1,31 +1,49 @@
 import React from 'react'
-import { inject, observer } from 'mobx-react';
+import { inject, observer} from 'mobx-react';
+import {observe} from 'mobx';
 
 
-let ProfileBox = inject("recordStore")(  observer(class ProfileBox extends React.Component {
+let ProfileBox = inject("recordStore", "userStore")(  observer(class ProfileBox extends React.Component {
 
     constructor(props) {
         super(props);
-        // Because we can't access to this in the class
-        window.self = this;
+    }
+
+    getRecord() {
+        this.props.recordStore.setOrgId(this.props.userStore.values.currentUser.orgsAndRecords[0].organisation);
+        this.props.recordStore.setRecordId(this.props.userStore.values.currentUser.orgsAndRecords[0].record);
+        this.props.recordStore.getRecord();
     }
 
     componentDidMount() {
-        window.self.props.recordStore.setOrgId('5bfec1068e33bc08bc139340');
-        window.self.props.recordStore.setRecordId('5bfd084ccbc3b70c3cd3846e');
-        window.self.props.recordStore.getRecord();
+        if(this.props.userStore.values.currentUser._id){
+            this.getRecord();
+        }else{
+            observe(this.props.userStore.values, 'currentUser', (change) => {
+                this.getRecord();
+            });
+        }  
     };
 
     render(){
-        const { values, errors, inProgress} = window.self.props.recordStore;
-        return(
-            <div>
-                This is the profile of
+        const { values, errors, inProgress} = this.props.recordStore;
+        if(values.record.name){
+            return(
                 <div>
-                    {values.record.name}
+                    You are redirected here because you already have a profile in an Organisation.
+                    This is the profile of
+                    <div>
+                        {values.record.name}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }else{
+            return(
+                <div>
+                    You haven't any profile yet. Join or create a Wingzy !
+                </div>
+            )
+        }
     }
 }));
 

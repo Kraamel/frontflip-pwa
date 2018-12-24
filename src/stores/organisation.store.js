@@ -7,11 +7,16 @@ class OrganisationStore {
     errors = null;
     values = {
         orgTag: '',
+        orgId: '',
         organisation: {},
     };
 
     setOrgTag(orgTag) {
         this.values.orgTag = orgTag;
+    }
+    
+    setOrgId(orgId) {
+        this.values.orgId = orgId;
     }
 
     setOrganisation(organisation) {
@@ -78,6 +83,7 @@ decorate(OrganisationStore, {
     reset: action,
     setOrganisation: action,
     setOrgTag: action,
+    setOrgId: action,
     getAlgoliaKey: action,
     getOrganisationForPublic: action
 });
