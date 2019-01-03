@@ -14,7 +14,7 @@ class Search extends React.Component {
                     <Grid style={{position: 'fixed', zIndex: 1000}} container item alignItems={"stretch"}>
                         <Banner src={bannerImg} />
                     </Grid>
-                    <Grid style={{position: 'fixed', zIndex: 1001}} container item justify={"center"} alignItems={'center'}>
+                    <Grid style={{position: 'fixed', zIndex: 1001, width: '100%'}} xs={6} contaAuth updateiner item justify={"center"} alignItems={'center'}>
                         <SearchField/>
                     </Grid>
                     <Grid style={{height: '30vmax'}}>

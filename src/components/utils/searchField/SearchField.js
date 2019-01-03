@@ -1,8 +1,15 @@
 import React from 'react'
 import {inject, observer} from 'mobx-react';
+import {TextField, withStyles} from '@material-ui/core';
 
+const styles = {
+    searchField: {
+        marginTop: 100,
+        marginBottom: 100,
+    }
+};
 
-let SearchField = inject("organisationStore", "commonStore")(observer(class SearchField extends React.Component {
+class SearchField extends React.Component {
     
     constructor(props) {
         super(props);
@@ -18,18 +25,39 @@ let SearchField = inject("organisationStore", "commonStore")(observer(class Sear
             });
     };
     
+    // handleSearchChange = (e) => {
+    //     this.props.authStore.setSearch(e.target.value);
+    // };
+    
+    // render(){
+    //     const { values } = window.self.props.organisationStore;
+    //     const { algoliaKey }  = window.self.props.commonStore;
+    //     return(
+    //         <div>
+    //             This is the algolia key of {values.organisation.tag}
+    //             <div>
+    //                 {algoliaKey}
+    //             </div>
+    //         </div>
+    //     );
+    // }
     render() {
-        const {values} = window.self.props.organisationStore;
-        const {algoliaKey} = window.self.props.commonStore;
         return (
-            <div>
-                This is the algolia key of {values.organisation.tag}
-                <div>
-                    {algoliaKey}
-                </div>
-            </div>
-        );
+            <TextField className={this.props.classes.searchField}
+                       error
+                       label="Search"
+                       type="search"
+                       fullWidth
+                       variant={"outlined"}
+            />
+        )
     }
-}));
+}
 
-export default (SearchField);
+export default inject("organisationStore", "commonStore")(
+    observer(
+        withStyles(styles)(
+            SearchField
+        )
+    )
+);

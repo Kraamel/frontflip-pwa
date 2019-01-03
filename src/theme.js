@@ -92,6 +92,21 @@ export default createMuiTheme({
                 },
             },
         },
+        MuiCard: {
+            root: {
+                maxWidth: 500,
+                borderRadius: 30,
+                maxHeight: '30vh',
+                margin: 15,
+            }
+        },
+        MuiCardMedia: {
+            root: {
+                width: '18vh',
+                height: '18vh',
+                borderRadius: '0 0 30px 0',
+            }
+        },
         MuiPaper: {
             root: {
                 padding: '16px'
@@ -104,7 +119,10 @@ export default createMuiTheme({
                 fontFamily: '"Open sans"',
             }
         },
-    },
+        MuiCardContent: {
+            root: {}
+        },
+    }
     props: {
         MuiButton: {
             variant: "contained"
