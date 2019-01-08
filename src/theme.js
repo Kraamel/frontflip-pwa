@@ -104,7 +104,7 @@ export default createMuiTheme({
             root: {
                 width: '18vh',
                 height: '18vh',
-                borderRadius: '0 0 30px 0',
+                borderRadius: '30px 0 30px 0',
             }
         },
         MuiPaper: {
@@ -122,7 +122,7 @@ export default createMuiTheme({
         MuiCardContent: {
             root: {}
         },
-    }
+    },
     props: {
         MuiButton: {
             variant: "contained"

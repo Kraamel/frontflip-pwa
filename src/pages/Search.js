@@ -1,39 +1,63 @@
 import React from 'react'
-import {Grid} from '@material-ui/core';
+import {Grid, withStyles} from '@material-ui/core';
 import Banner from '../components/utils/banner/Banner'
 import SearchField from '../components/utils/searchField/SearchField';
-import Card from '../components/card/CardProfile';
 
 import bannerImg from '../resources/images/fly_away.jpg'
 
+const styles = {
+    stickyComponent: {
+        position: "sticky",
+        top: 3,
+        zIndex: 9999,
+    },
+    searchBanner: {
+        position: 'relative',
+        transition: 'opacity 0.8s'
+    }
+};
+
 class Search extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            bannerOpacity: 1,
+        };
+    }
+    
+    componentDidMount = () => {
+        window.addEventListener('scroll', this.onScroll, false);
+    };
+    
+    componentWillUnmount = () => {
+        window.removeEventListener('scroll', this.onScroll, false);
+    };
+    
+    onScroll = () => {
+        if (window.scrollY > 65) {
+            this.setState({
+                bannerOpacity: 0
+            });
+        } else {
+            this.setState({
+                bannerOpacity: 1
+            });
+        }
+    };
+    
     render() {
+        
         return (
-            <div>
-                <Grid style={{position: 'relative'}} container direction={'column'} alignItems={'center'}>
-                    <Grid style={{position: 'fixed', zIndex: 1000}} container item alignItems={"stretch"}>
-                        <Banner src={bannerImg} />
-                    </Grid>
-                    <Grid style={{position: 'fixed', zIndex: 1001, width: '100%'}} xs={6} contaAuth updateiner item justify={"center"} alignItems={'center'}>
-                        <SearchField/>
-                    </Grid>
-                    <Grid style={{height: '30vmax'}}>
-                    </Grid>
-                    <Grid container item direction={'column'} alignItems={'center'}>
-                        <Grid item xs={10} sm={6}>
-                            <Card/>
-                        </Grid>
-                        <Grid item xs={10} sm={6}>
-                            <Card/>
-                        </Grid>
-                        <Grid item xs={10} sm={6}>
-                            <Card/>
-                        </Grid>
-                    </Grid>
+            <Grid container direction={'column'} alignItems={'center'}>
+                <Grid container item alignItems={"stretch"} className={this.props.classes.searchBanner} style={{opacity: this.state.bannerOpacity}}>
+                    <Banner src={bannerImg}/>
                 </Grid>
-            </div>
+                <Grid container item className={this.props.classes.stickyComponent} xs={6} sm={6} alignItems={'center'}>
+                    <SearchField/>
+                </Grid>
+            </Grid>
         );
     }
 }
 
-export default Search;
+export default withStyles(styles)(Search)

@@ -4,8 +4,7 @@ import {TextField, withStyles} from '@material-ui/core';
 
 const styles = {
     searchField: {
-        marginTop: 100,
-        marginBottom: 100,
+        marginTop: 10,
     }
 };
 
