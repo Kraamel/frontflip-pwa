@@ -26,7 +26,7 @@ class AddContactField extends React.Component {
     this.props.recordStore.values.record.links.push({"type":typeOfField,"value":""})
     this.props.parent.forceUpdate();
     this.forceUpdate();
-    console.log(JSON.stringify(this.props.recordStore.values.record.links))
+    // console.log(JSON.stringify(this.props.recordStore.values.record.links))
   }
   
   handleToggle = () => {
@@ -43,6 +43,7 @@ class AddContactField extends React.Component {
   render() {
     const {classes} = this.props;
     const {open} = this.state;
+    let linkName = ['email','phone','linkedin','twitter','facebook','github','link']
     
     return (
       <div className={classes.root}>
@@ -68,41 +69,15 @@ class AddContactField extends React.Component {
               <Paper className={classes.paper}>
                 <ClickAwayListener onClickAway={this.handleClose}>
                   <Grid container style={{color: 'red'}} justify={'space-between'}>
-                    <Grid item>
-                      <IconButton onClick={() => this.addLink('twitter')}>
-                        <i className="fa fa-twitter"/>
-                      </IconButton>
-                    </Grid>
-                    <Grid item>
-                      <IconButton onClick={() => this.addLink('email')}>
-                        <i className="fa fa-envelope"/>
-                      </IconButton>
-                    </Grid>
-                    <Grid item>
-                      <IconButton onClick={() => this.addLink('linkedin')}>
-                        <i className="fa fa-linkedin"/>
-                      </IconButton>
-                    </Grid>
-                    <Grid item>
-                      <IconButton onClick={() => this.addLink('phone')}>
-                        <i className="fa fa-phone"/>
-                      </IconButton>
-                    </Grid>
-                    <Grid item>
-                      <IconButton onClick={() => this.addLink('facebook')}>
-                        <i className="fa fa-facebook"/>
-                      </IconButton>
-                    </Grid>
-                    <Grid item>
-                      <IconButton onClick={() => this.addLink('github')}>
-                        <i className="fa fa-github"/>
-                      </IconButton>
-                    </Grid>
-                    <Grid item>
-                      <IconButton onClick={() => this.addLink('link')}>
-                        <i className="fa fa-link"/>
-                      </IconButton>
-                    </Grid>
+                    {linkName.map((name, i) => {
+                      return(
+                        <Grid item key={i}>
+                          <IconButton onClick={() => this.addLink(name)}>
+                            <i className={`fa fa-${name}`}/>
+                          </IconButton>
+                        </Grid>
+                      )
+                    })}
                   </Grid>
                 </ClickAwayListener>
               </Paper>

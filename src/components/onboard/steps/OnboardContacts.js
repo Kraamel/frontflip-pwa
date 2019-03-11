@@ -12,9 +12,7 @@ class OnboardContacts extends React.Component {
   }
   
   handleLinksChange = (e, link) => {
-    var record = this.props.recordStore.values.record;
     link.value = e.target.value;
-    this.props.recordStore.setRecord(record);
     this.forceUpdate()
   }
   
