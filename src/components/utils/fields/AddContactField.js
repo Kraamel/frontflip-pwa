@@ -23,8 +23,9 @@ class AddContactField extends React.Component {
   }
   
   addLink= (typeOfField) => {
-    this.props.recordStore.values.record.links.push({"_id": "new_"+(new Date()).getMilliseconds(),"type":typeOfField,"value":""})
+    this.props.recordStore.values.record.links.push({"type":typeOfField,"value":""})
     this.props.parent.forceUpdate();
+    this.forceUpdate();
     console.log(JSON.stringify(this.props.recordStore.values.record.links))
   }
   
@@ -70,6 +71,21 @@ class AddContactField extends React.Component {
                     <Grid item>
                       <IconButton onClick={() => this.addLink('twitter')}>
                         <i className="fa fa-twitter"/>
+                      </IconButton>
+                    </Grid>
+                    <Grid item>
+                      <IconButton onClick={() => this.addLink('email')}>
+                        <i className="fa fa-envelope"/>
+                      </IconButton>
+                    </Grid>
+                    <Grid item>
+                      <IconButton onClick={() => this.addLink('linkedin')}>
+                        <i className="fa fa-linkedin"/>
+                      </IconButton>
+                    </Grid>
+                    <Grid item>
+                      <IconButton onClick={() => this.addLink('phone')}>
+                        <i className="fa fa-phone"/>
                       </IconButton>
                     </Grid>
                     <Grid item>

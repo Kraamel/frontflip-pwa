@@ -51,7 +51,6 @@ a {
 
 div[role="tooltip"]{
     z-index: 9999;
-    width: 30%;
     align-items: center;
 }
 

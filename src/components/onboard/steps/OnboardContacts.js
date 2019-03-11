@@ -11,17 +11,18 @@ class OnboardContacts extends React.Component {
     this.setDefaultLinks();
   }
   
-  handleChange = (e, field) => {
-    let record = this.props.recordStore.values.record;
-    record[field] = e.target.value;
+  handleLinksChange = (e, link) => {
+    var record = this.props.recordStore.values.record;
+    link.value = e.target.value;
     this.props.recordStore.setRecord(record);
-    this.forceUpdate(); // why component do not update auto like Login fields ?
+    this.forceUpdate()
   }
   
   deleteLink = (infoToBeDeleted) => {
     this.props.recordStore.values.record.links = this.props.recordStore.values.record.links.filter(item => {
       return item._id !== infoToBeDeleted
     })
+    this.props.handleSave(['links']);
     this.forceUpdate();
   }
   
@@ -30,11 +31,10 @@ class OnboardContacts extends React.Component {
   }
   
   setDefaultLinks = () => {
-    let types = ['linkedin', 'email', 'phone']
+    let types = ['email', 'phone', 'linkedin']
     for (let type of types) {
       if (!this.getLinkByType(type)) {
         this.props.recordStore.values.record.links.push({"type": type, "value": ""});
-        this.props.handleSave(['links']);
       }
     }
   };
@@ -44,27 +44,27 @@ class OnboardContacts extends React.Component {
     
     return (
       <Grid container item xs={12} sm={6} lg={4} direction="column" spacing={16}>
-        {data.map((info, i) => {
+        {data.map((link, i) => {
           return (
             <Grid container item key={i}>
               <TextField
-                label={info.type}
+                label={link.type}
                 fullWidth
                 type="text"
                 variant={"outlined"}
-                value={info.value}
-                onChange={(e) => this.handleChange(e, 'intro')}
+                value={link.value}
+                onChange={(e) => this.handleLinksChange(e, link)}
                 onBlur={(e) => this.props.handleSave(['links'])}
-                placeholder={info.type}
+                placeholder={link.type}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      {info.type === 'email' ? <i className="fa fa-envelope"/> : <i className={`fa fa-${info.type}`}/>}
+                      {link.type === 'email' ? <i className="fa fa-envelope"/> : <i className={`fa fa-${link.type}`}/>}
                     </InputAdornment>
                   ),
                   endAdornment: (
                     <IconButton position="end" onClick={() => {
-                      this.deleteLink(info._id)
+                      this.deleteLink(link._id)
                     }}>
                       <Clear fontSize="default"/>
                     </IconButton>
@@ -75,7 +75,7 @@ class OnboardContacts extends React.Component {
           )
         })}
         <Grid item>
-          <AddContactField style={{position: 'relative'}} parent={this}/>
+          <AddContactField style={{position: 'relative'}} parent={this} handleSave={this.props.handleSave}/>
         </Grid>
       </Grid>
     );
