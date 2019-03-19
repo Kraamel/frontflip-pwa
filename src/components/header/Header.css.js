@@ -82,6 +82,9 @@ export const styles = theme => ({
     color: theme.palette.secondary.main,
     fontSize: 40,
   },
+  divider: {
+    marginTop: 36,
+  },
   content: {
     flexGrow: 1,
     transition: theme.transitions.create('margin', {
@@ -110,5 +113,11 @@ export const styles = theme => ({
   },
   toolbar: {
     padding: 0
+  },
+  signout: {
+    textAlign: 'center',
+    borderRadius: 60,
+    backgroundColor: 'white',
+    padding: '0.76em',
   }
 });
