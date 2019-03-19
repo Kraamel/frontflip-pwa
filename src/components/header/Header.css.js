@@ -10,7 +10,7 @@ export const styles = theme => ({
   menuLink: {
     minWidth: '130px',
     height: '30px',
-    [theme.breakpoints.down('md')] : {
+    [theme.breakpoints.down('md')]: {
       '&:hover': {
         backgroundColor: 'transparent',
       }
@@ -21,8 +21,8 @@ export const styles = theme => ({
   },
   title: {
     lineHeight: '50%',
-    [theme.breakpoints.down('sm')] : {
-      display : 'none'
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
     }
   },
   sectionDesktop: {
@@ -71,14 +71,17 @@ export const styles = theme => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
-    drawerIconButton: {
+  drawerIconButton: {
+    backgroundColor: 'white',
     padding: 0,
     margin: '8px 16px',
-    },
+    // '&:hover': {
+    // }
+  },
   drawerIcon: {
     color: theme.palette.secondary.main,
     fontSize: 40,
-   },
+  },
   content: {
     flexGrow: 1,
     transition: theme.transitions.create('margin', {

@@ -102,6 +102,9 @@ export default createMuiTheme({
       root: {
         color: '#DDE9EB',
         padding: 8,
+        '&:hover':{
+          backgroundColor:palette.primary.main
+        }
       }
     },
     MuiChip: {

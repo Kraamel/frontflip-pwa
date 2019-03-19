@@ -103,7 +103,6 @@ class App extends Component {
                         <AvailabilityToggle />
                       </ListItemSecondaryAction>
                     </ListItem>
-
                   </List>
                   <Divider />
                 </div>
@@ -120,8 +119,8 @@ class App extends Component {
 
                 {(organisation.canInvite) && (
                   <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/invite', organisation.tag)} >
-                    <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.invite'})} 
-                                  primaryTypographyProps={{style: { fontWeight: 'bold', color: theme.palette.primary.main, textTransform: 'uppercase' } }} />
+                    <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.invite'})}
+                                  primaryTypographyProps={{style: { fontWeight: 'bold', color: theme.palette.secondary.main, textTransform: 'uppercase' } }} />
                   </ListItem>
                 )}
 
@@ -132,16 +131,16 @@ class App extends Component {
                 )}
 
 
-                <ListItem>
+                <ListItem style={{backgroundImage:'linear-gradient(to top right, #DAA520, #E9C261)'}}>
                   <ListItemText primary={
                     (organisation.premium ? intl.formatMessage({ id: 'menu.drawer.organisationInfoPremium' }) : intl.formatMessage({ id: 'menu.drawer.organisationInfo' }))
-                  } />
+                  } primaryTypographyProps={{style: { textTransform: 'uppercase', fontWeight: 'bold'}}}/>
                 </ListItem>
 
                 <ListItem button component="a" href={'mailto:premium@wingzy.io'} target="_blank" >
                   <ListItemText primary={
                     (organisation.premium ? intl.formatMessage({ id: 'menu.drawer.contactUsPremium' }) : intl.formatMessage({ id: 'menu.drawer.contactUs' }))
-                  } />
+                  }/>
                 </ListItem>
                 <Divider />
                 {(currentUser.orgsAndRecords && (currentUser.orgsAndRecords.length > 1) ) && (
@@ -176,7 +175,7 @@ class App extends Component {
               <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.terms' })} />
             </ListItem>
 
-            <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/protectingYourData', 
+            <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/protectingYourData',
                                                                       ((organisation && organisation.tag) ? organisation.tag : undefined))} target="_blank">
               <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.protectingYourData' })} />
             </ListItem>
@@ -185,8 +184,9 @@ class App extends Component {
           {auth && (
             <div>
               <List className={'leftSubmenu'}>
-                <ListItem button onClick={this.handleLogout} >
-                  <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.logout' })} />
+                <ListItem button onClick={this.handleLogout}>
+                  <i className="fa fa-sign-out" style={{color:'white'}} aria-hidden="true"/>
+                  <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.logout' })}/>
                 </ListItem>
               </List>
             </div>

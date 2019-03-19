@@ -101,10 +101,7 @@ export const styles = theme => ({
     position: 'absolute',
     margin: 16,
     background: 'white',
-    color: theme.palette.secondary.main,
-    '&:hover': {
-      backgroundColor: 'rgba(0, 0, 0, 0.08)',
-    }
+    color: theme.palette.secondary.main
   },
   returnButtonSize: {
     fontSize: 24,
