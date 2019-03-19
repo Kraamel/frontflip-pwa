@@ -221,7 +221,12 @@ export default createMuiTheme({
       root: {
         paddingTop: 8,
         paddingBottom: 8,
-      },
+      }
+    },
+    MuiListItemText: {
+      primary:{
+        fontSize: '1rem',
+      }
     },
     // Tabs
     MuiTab: {

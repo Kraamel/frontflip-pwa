@@ -185,7 +185,6 @@ class App extends Component {
             <div>
               <List className={'leftSubmenu'}>
                 <ListItem button onClick={this.handleLogout}>
-                  <i className="fa fa-sign-out" style={{color:'white'}} aria-hidden="true"/>
                   <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.logout' })}/>
                 </ListItem>
               </List>
