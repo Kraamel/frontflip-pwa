@@ -86,6 +86,11 @@ export default createMuiTheme({
       disabled: {
         color:palette.primary.hover + '!important'
       },
+      contained: {
+        '&:hover': {
+          backgroundColor: palette.secondary.dark
+        }
+      },
       text: {
         color: "darkgrey",
         '&:hover': {
