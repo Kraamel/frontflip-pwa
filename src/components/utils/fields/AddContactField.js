@@ -1,7 +1,7 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
 import {FormattedMessage} from 'react-intl';
-import {Grid, Grow, Paper, Popper, ClickAwayListener, Button, IconButton, withStyles, Typography} from '@material-ui/core'
+import {Grid, Grow, Paper, Popper, ClickAwayListener, Button, IconButton, withStyles, Tooltip} from '@material-ui/core'
 import {Add} from "@material-ui/icons";
 
 const styles = theme => ({
@@ -58,7 +58,7 @@ class AddContactField extends React.Component {
     this.props.addLink({type: typeOfField, value: ''});
     this.setState({open: false});
   }
-
+  
   handleToggle = () => {
     this.setState(state => ({open: !state.open}));
   };
@@ -119,9 +119,11 @@ class AddContactField extends React.Component {
                       {linkName.map((name, i) => {
                         return (
                           <Grid item key={i}>
-                            <IconButton onClick={() => this.addLink(name)}>
-                              <i className={classes.contactButton + " fa fa-" + this.getIcon(name)}/>
-                            </IconButton>
+                            <Tooltip title={this.props.capitalize(name)}>
+                              <IconButton onClick={() => this.addLink(name)} label={name}>
+                                <i className={classes.contactButton + " fa fa-" + this.getIcon(name)}/>
+                              </IconButton>
+                            </Tooltip>
                           </Grid>
                         )
                       })}

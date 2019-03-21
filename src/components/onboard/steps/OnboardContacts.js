@@ -148,7 +148,7 @@ class OnboardContacts extends React.Component {
               )
             })}
             <Grid item style={{width: '100%', padding: 8}}>
-              <AddContactField parent={this} handleSave={this.props.handleSave} addLink={this.addLink}/>
+              <AddContactField parent={this} handleSave={this.props.handleSave} addLink={this.addLink} capitalize={this.capitalize}/>
             </Grid>
         </Grid>
       </Grid>
