@@ -74,7 +74,6 @@ const styles = theme => ({
     }
   },
   contact: {
-    margin: 4,
     [theme.breakpoints.up('xs')]: {
       margin: 2,
     }
