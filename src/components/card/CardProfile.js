@@ -74,20 +74,20 @@ const styles = theme => ({
     }
   },
   contact: {
+    margin: 4,
     [theme.breakpoints.up('xs')]: {
       margin: 2,
     }
   },
   contactField: {
     marginLeft: 100,
-    paddingLeft: 76,
+    paddingLeft: 82,
     minHeight: 40,
     backgroundColor: theme.palette.primary.dark,
-    boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
     [theme.breakpoints.down('xs')]: {
       minHeight: 35,
       marginLeft: 75,
-      paddingLeft: 66,
+      paddingLeft: 72,
     },
   },
   contactButton: {
@@ -102,6 +102,9 @@ const styles = theme => ({
       left: 0,
       right: 0,
       margin: 'auto',
+    },
+    '&:hover': {
+      backgroundColor: '#41424F',
     }
   },
   dispo: {
