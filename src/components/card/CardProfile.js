@@ -64,10 +64,10 @@ const styles = theme => ({
     minHeight: 30
   },
   fullWidth: {
-    width: '100%'
+    width: '100%',
+    cursor: 'pointer'
   },
   cardHeader: {
-    cursor: 'pointer',
     maxHeight: 138,
     [theme.breakpoints.down('xs')]: {
       maxHeight: 100,
@@ -159,7 +159,7 @@ class CardProfile extends React.Component {
     ProfileService.orderHashtags(hit);
     
     return (
-      <Card className={classes.fullWidth} key={hit.objectID}>
+      <Card className={classes.fullWidth} key={hit.objectID} onClick={(e) => handleDisplayProfile(e, hit)}>
         <Grid item container>
           <CardHeader
             avatar={
@@ -180,7 +180,6 @@ class CardProfile extends React.Component {
                 <span dangerouslySetInnerHTML={{__html: ProfileService.htmlDecode(((hit._snippetResult && hit._snippetResult.intro) ? hit._snippetResult.intro.value : null) || hit.intro || '')}}></span>
               </Typography>
             }
-            onClick={(e) => handleDisplayProfile(e, hit)}
             className={classes.cardHeader}
           />
         </Grid>
