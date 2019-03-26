@@ -103,8 +103,10 @@ export const styles = theme => ({
     margin: 16,
     background: 'white',
     color: theme.palette.secondary.main,
+    opacity: 0.7,
     '&:hover': {
-      backgroundColor: 'rgba(0, 0, 0, 0.08)',
+      backgroundColor: 'white',
+      opacity: 1,
     }
   },
   returnButtonSize: {

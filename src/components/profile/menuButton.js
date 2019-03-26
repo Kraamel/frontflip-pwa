@@ -20,6 +20,11 @@ const styles = theme => ({
     backgroundColor: 'white',
     color: theme.palette.secondary.main,
     boxShadow: 'none',
+    opacity: 0.7,
+    '&:hover': {
+      backgroundColor: 'white',
+      opacity: 1,
+    }
   },
   paper: {
     marginTop: 8,
