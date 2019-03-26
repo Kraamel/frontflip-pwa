@@ -87,7 +87,7 @@ class App extends Component {
                   <List className={'leftSubmenu'}>
                     <ListItem >
                       <ListItemAvatar>
-                        <Logo type={'person'} src={this.getPicturePath(record.picture) || defaultPicture} alt={record.name || record.tag} />
+                        <Logo type={'person'} src={this.getPicturePath(record.picture) || defaultPicture} alt={record.name || record.tag} className={classes.logoBorder}/>
                       </ListItemAvatar>
                       <ListItemText primary={record.name || record.tag}
                         primaryTypographyProps={{ variant: 'button', noWrap: true, style: { fontWeight: 'bold', color:'white' } }} />
@@ -112,7 +112,7 @@ class App extends Component {
               <List className={'leftSubmenu'}>
                 <ListItem onClick={this.props.handleDrawerClose} component={Link} to={'/' + locale + '/' + organisation.tag}>
                   <ListItemAvatar>
-                    <Logo type={'organisation'} alt={organisation.name} />
+                    <Logo type={'organisation'} alt={organisation.name} className={classes.logoBorder}/>
                   </ListItemAvatar>
                   <ListItemText primary={organisation.name || organisation.tag}
                     primaryTypographyProps={{ variant: 'button', noWrap: true, style: { fontWeight: 'bold', color:'white' } }} />
