@@ -120,7 +120,7 @@ export const styles = theme => ({
     margin: '8px 0',
   },
   menuButton: {
-    paddding: 0,
+    padding: 0,
     cursor: 'pointer',
     height: 48,
     width: 48,
@@ -128,5 +128,10 @@ export const styles = theme => ({
     '&:hover': {
       backgroundColor: 'white',
     }
+  },
+  logoBorder: {
+    backgroundCOlor: 'white',
+    border: '2px solid white',
   }
+  
 });
