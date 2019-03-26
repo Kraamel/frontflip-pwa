@@ -112,6 +112,7 @@ export const styles = theme => ({
   },
   divider: {
     backgroundColor: 'rgba(255,255,255,.12)',
+    margin: '8px 0',
   },
   menuButton: {
     paddding: 0, 
