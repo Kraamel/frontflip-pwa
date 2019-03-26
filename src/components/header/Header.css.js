@@ -72,15 +72,20 @@ export const styles = theme => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
-    drawerIconButton: {
+  drawerIconButton: {
     padding: 0,
     background: 'white',
     margin: '8px 16px',
-    },
+    opacity: 0.7,
+    '&:hover': {
+      backgroundColor: 'white',
+      opacity: 1,
+    }
+  },
   drawerIcon: {
     color: theme.palette.secondary.main,
     fontSize: 40,
-   },
+  },
   content: {
     flexGrow: 1,
     transition: theme.transitions.create('margin', {
@@ -112,12 +117,13 @@ export const styles = theme => ({
   },
   divider: {
     backgroundColor: 'rgba(255,255,255,.12)',
+    margin: '8px 0',
   },
   menuButton: {
-    paddding: 0, 
-    cursor: 'pointer', 
+    paddding: 0,
+    cursor: 'pointer',
     height: 48,
-    width: 48, 
+    width: 48,
     backgroundColor: 'white',
     '&:hover': {
       backgroundColor: 'white',
