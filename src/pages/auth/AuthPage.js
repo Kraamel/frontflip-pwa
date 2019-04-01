@@ -9,12 +9,13 @@ import Logo from '../../components/utils/logo/Logo';
 
 const styles = {
   logo: {
-    width: '6.5rem',
-    height: '6.5rem',
+    width: '6.6rem',
+    height: '6.6rem',
     boxShadow: '0 5px 15px -1px darkgrey, 0 0 0 5px transparent',
-    bottom: '3.6rem',
+    bottom: '3.2rem',
     marginBottom: '-7rem',
     zIndex: 2,
+    border: '4px solid white'
   }
 };
 
