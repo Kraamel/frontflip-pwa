@@ -89,5 +89,6 @@
     "pwa.install.ios": "Install this app on your iPhone! Tap {img} and then 'Add to homescreen'.",
     "action.addWings.add": "Add to my profile",
     "action.addWings.search": "Search {organisationName}",
-    "action.addWings.text": "You found {wingsCount} Wings!"
+    "action.addWings.text": "You found {wingsCount} Wings!",
+    "nobody.searchList": "No one here ... yet !"
 }
