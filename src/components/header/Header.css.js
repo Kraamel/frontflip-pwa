@@ -10,7 +10,15 @@ export const styles = theme => ({
   menuLink: {
     minWidth: '130px',
     height: '30px',
-    [theme.breakpoints.down('md')] : {
+    marginRight: 8,
+    color: theme.palette.secondary.main,
+    backgroundColor: 'white',
+    boxShadow:'1px 3px 6px rgba(0, 0, 0, 0.6)',
+    '&:hover': {
+      color: theme.palette.secondary.main,
+      backgroundColor: '#d5d5d5',
+    },
+    [theme.breakpoints.down('sm')]: {
       '&:hover': {
         backgroundColor: 'transparent',
       }

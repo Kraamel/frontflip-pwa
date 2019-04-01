@@ -21,12 +21,6 @@ class HeaderLinks extends Component {
       <div className={classes.fixToRight}>
         <div className={classes.grow} />
         <div className={classes.sectionDesktop}>
-          <Button variant="text" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '', undefined)} className={classes.menuLink}>
-            <FormattedMessage id="Why Wingzy ?" />
-          </Button>
-          <Button variant="text" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/pricing', undefined)} className={classes.menuLink}>
-            <FormattedMessage id="Pricing" />
-          </Button>
           {auth && (
             <IconButton
               aria-owns={isMenuOpen ? 'material-appbar' : undefined}
