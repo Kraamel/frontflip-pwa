@@ -112,7 +112,6 @@ export default createMuiTheme({
         fontWeight: '600',
         margin: '16px 8px 4px 8px',
         fontSize: '0.8125rem',
-        transition: 'all 250ms',
       },
       label: {
         '& div': {
