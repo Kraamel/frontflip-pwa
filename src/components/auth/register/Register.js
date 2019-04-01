@@ -94,7 +94,7 @@ class Register extends React.Component {
               </Grid>
             )}
             <Grid item>
-              <GoogleButton fullWidth={true} onClick={this.props.handleGoogleAuth} />
+              <GoogleButton fullWidth={true} onClick={this.props.handleGoogleAuth} id={"Sign up with Google"}/>
             </Grid>
             <Grid item>
               <Typography style={{
