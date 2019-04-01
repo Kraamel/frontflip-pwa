@@ -141,6 +141,11 @@ export default createMuiTheme({
         },
       },
     },
+    MuiBackdrop: {
+      root: {
+        filter: 'brightness(0) invert(1)',
+      },
+    },
     //Cards
     MuiCard: {
       root: {
