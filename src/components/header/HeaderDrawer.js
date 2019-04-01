@@ -160,17 +160,18 @@ class App extends Component {
                   </ListItem>
                 )}
               </List>
-              <Divider className={classes.divider} />
             </div>
           )}
           <List className={'leftSubmenu'}>
             <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/', undefined)} target="_blank">
               <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.whyWingzy' })} />
             </ListItem>
-
+            
+            {!organisation.premium && (
             <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/pricing', undefined)} target="_blank">
               <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.pricing' })} />
             </ListItem>
+            )}
 
             <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/terms', undefined)} target="_blank">
               <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.terms' })} />
