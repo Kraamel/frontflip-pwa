@@ -63,6 +63,7 @@ export default createMuiTheme({
       body1: {
         color: 'white',
         fontWeight: '400',
+        fontSize: '0.95rem',
       },
       body2: {
         fontWeight: '600',
