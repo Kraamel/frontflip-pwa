@@ -112,10 +112,10 @@ export default createMuiTheme({
         fontWeight: '600',
         margin: '16px 8px 4px 8px',
         fontSize: '0.8125rem',
+        transition: 'all 250ms',
       },
       label: {
         '& div': {
-          color: 'white',
           fontSize: '0.8125rem',
         },
         '& div:nth-child(2)': {
@@ -129,6 +129,7 @@ export default createMuiTheme({
         color: palette.primary.dark,
         backgroundColor: palette.primary.main,
         '&:hover': {
+          color: palette.primary.dark,
           backgroundColor: palette.primary.hover +' !important',
         },
       },
@@ -136,7 +137,6 @@ export default createMuiTheme({
         color: 'white',
         backgroundColor: palette.primary.dark,
         '&:hover': {
-          // color: 'white',
           backgroundColor: palette.primary.hover +' !important'
         },
       },

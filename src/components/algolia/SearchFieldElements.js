@@ -6,7 +6,7 @@ import defaultPicture from '../../resources/images/placeholder_person.png';
 
 export const MultiValueContainer = (props) => {
   return (
-    <Chip label={props.children} color="secondary" onClick={props.onClick} className={'editableChip'} />
+    <Chip label={props.children} color="primary" onClick={props.onClick} className={'editableChip'} />
   );
 };
 

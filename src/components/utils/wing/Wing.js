@@ -14,6 +14,10 @@ const styles = theme => ({
   highlighted: {
     backgroundColor: theme.palette.primary.dark,
     color: 'white',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark  + ' !important',
+      color: 'white'  + ' !important'
+    }
   },
   button: {
     backgroundColor: theme.palette.secondary.main,
