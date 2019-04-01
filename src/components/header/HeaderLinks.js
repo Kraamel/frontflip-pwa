@@ -43,8 +43,8 @@ class HeaderLinks extends Component {
 
         </div>
         <div className={classes.sectionMobile}>
-          <IconButton aria-haspopup="true" onClick={handleMobileMenuOpen} color="inherit">
-            <MoreIcon />
+          <IconButton aria-haspopup="true" onClick={handleMobileMenuOpen} className={classes.iconBtn}>
+            <MoreIcon   className={classes.iconSvg}/>
           </IconButton>
         </div>
       </div>
