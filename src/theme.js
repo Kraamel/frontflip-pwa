@@ -226,9 +226,17 @@ export default createMuiTheme({
       },
       input: {
         borderRadius: 30,
+        fontSize: 'large',
+        color:palette.primary.dark,
       },
       adornedEnd: {
         paddingRight: 8,
+      }
+    },
+    MuiInputLabel: {
+      shrink: {
+        fontWeight: '600',
+        fontSize: 'medium',
       }
     },
     //List
