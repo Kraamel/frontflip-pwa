@@ -160,6 +160,7 @@ class App extends Component {
                   </ListItem>
                 )}
               </List>
+              <Divider className={classes.divider} />
             </div>
           )}
           <List className={'leftSubmenu'}>
