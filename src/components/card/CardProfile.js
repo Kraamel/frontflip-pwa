@@ -127,9 +127,9 @@ const styles = theme => ({
     backgroundPositionY: 'bottom',
     borderRadius: '50%',
     border: '8px solid white',
-    backgroundSize: '200px auto',
+    backgroundSize: '200px 200px',
     [theme.breakpoints.down('xs')]: {
-      backgroundSize: '150px auto',
+      backgroundSize: '150px 150px',
     }
   }
 })
