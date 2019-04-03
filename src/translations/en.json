@@ -37,7 +37,7 @@
     "algolia.noOptions": "No results found for {input}",
     "algolia.typeSomething": "Type something to begin ...",
     "algolia.search": "Search ...",
-    "algolia.onboard": "Search your talents, skills, energies",
+    "algolia.onboard": "Add your wings",
     "algolia.createOption": "Search \"{input}\"",
     "algolia.createWing": "Create Wing \"{input}\"",
     "menu.organisation.welcome": "Welcome to {name}",
