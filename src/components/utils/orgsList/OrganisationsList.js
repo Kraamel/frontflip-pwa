@@ -23,7 +23,8 @@ const style = theme => ({
     position: 'relative',
     left: 0,
     right: 0,
-    margin: 'auto'
+    margin: 'auto',
+    border: '2px solid white',
   },
   itemName: {
     textTransform: 'uppercase',
