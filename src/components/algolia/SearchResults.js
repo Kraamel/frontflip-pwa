@@ -30,6 +30,7 @@ class SearchResults extends React.Component {
     this.state = {
       hits: [],
       page: 0,
+      showNoResult: false,
       loadInProgress: true,
       hideShowMore: false,
       hitsAlreadyDisplayed: 0,
@@ -54,8 +55,8 @@ class SearchResults extends React.Component {
   fetchHits = (filters, query, facetFilters, page) => {
     AlgoliaService.fetchHits(filters, query, facetFilters, page)
       .then((content) => {
-        
-      if(!content) return;
+      
+      if(!content || !content.hits || content.hits.length === 0) this.setState({showNoResult: true, hideShowMore: true});
         this.setState({hitsAlreadyDisplayed: Math.min((content.hitsPerPage * (content.page)), content.nbHits)});
       if(content.page === (content.nbPages-1)) this.setState({hideShowMore: true});
       if(page) this.setState({hits: this.state.hits.concat(content.hits)}, this.endTask());
@@ -76,22 +77,10 @@ class SearchResults extends React.Component {
   
   
   render() {
-    const {hits, loadInProgress, hideShowMore, hitsAlreadyDisplayed} = this.state;
+    const {hits, loadInProgress, hideShowMore, hitsAlreadyDisplayed, showNoResult} = this.state;
     const {addToFilters, handleDisplayProfile, classes, HitComponent} = this.props;
     return (
       <div className={classes.hitList}>
-        {hits.length === 0  && (
-          <Grid container item justify={"center"} alignItems={'center'} direction={'column'}>
-            <Grid item>
-            <Typography variant="h4" className={classes.text} >
-              <FormattedMessage id={"nobody.searchList"}/>
-            </Typography>
-            </Grid>
-            <Grid item>
-              <img src={chat}  alt={'chat'} className={classes.image}/>
-            </Grid>
-          </Grid>
-        )}
         <ul>
           {hits.map((hit, i) => {
           return(
@@ -113,6 +102,18 @@ class SearchResults extends React.Component {
                 )}
               </Grid>
             </li>
+          )}
+          {showNoResult && (
+            <Grid container item justify={"center"} alignItems={'center'} direction={'column'}>
+              <Grid item>
+                <Typography variant="h4" className={classes.text} >
+                  <FormattedMessage id={"nobody.searchList"}/>
+                </Typography>
+              </Grid>
+              <Grid item>
+                <img src={chat}  alt={'chat'} className={classes.image}/>
+              </Grid>
+            </Grid>
           )}
         </ul>
       </div>
