@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from "@material-ui/core";
+import {Button, withStyles} from "@material-ui/core";
 import { inject, observer } from "mobx-react";
 import PropTypes from 'prop-types';
 import { Divider, SwipeableDrawer, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText, ListItemAvatar } from '@material-ui/core';
@@ -8,7 +8,7 @@ import './header.css';
 import AvailabilityToggle from '../availabilityToggle/AvailabilityToggle';
 import { styles } from './Header.css.js'
 import Logo from '../utils/logo/Logo';
-import { injectIntl } from 'react-intl';
+import {FormattedMessage, injectIntl} from 'react-intl';
 import defaultPicture from '../../resources/images/placeholder_person.png';
 import UrlService from '../../services/url.service';
 import { Link, withRouter } from 'react-router-dom';
@@ -120,7 +120,7 @@ class App extends Component {
 
                 {(organisation.canInvite) && (
                   <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/invite', organisation.tag)} >
-                    <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.invite'})} 
+                    <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.invite'})}
                                   primaryTypographyProps={{style: { fontWeight: 'bold', color: theme.palette.primary.main, textTransform: 'uppercase' } }} />
                   </ListItem>
                 )}
@@ -130,14 +130,11 @@ class App extends Component {
                     <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.organisationAdmin' })} />
                   </ListItem>
                 )}
-
-
                 <ListItem>
                   <ListItemText primary={
                     (organisation.premium ? intl.formatMessage({ id: 'menu.drawer.organisationInfoPremium' }) : intl.formatMessage({ id: 'menu.drawer.organisationInfo' }))
                   } />
                 </ListItem>
-
                 <ListItem button component="a" href={'mailto:premium@wingzy.io'} target="_blank" >
                   <ListItemText primary={
                     (organisation.premium ? intl.formatMessage({ id: 'menu.drawer.contactUsPremium' }) : intl.formatMessage({ id: 'menu.drawer.contactUs' }))
@@ -164,20 +161,25 @@ class App extends Component {
             </div>
           )}
           <List className={'leftSubmenu'}>
+            {!auth && (
+              <React.Fragment>
+                <ListItem button component="a" href={"/" + locale + (organisation.tag ? '/' + organisation.tag : '') + '/signin'} >
+                  <ListItemText primary={intl.formatMessage({ id: 'Sign In' })} />
+                </ListItem>
+                <Divider className={classes.divider} />
+              </React.Fragment>
+              )}
             <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/', undefined)} target="_blank">
               <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.whyWingzy' })} />
             </ListItem>
-            
             {!organisation.premium && (
             <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/pricing', undefined)} target="_blank">
               <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.pricing' })} />
             </ListItem>
             )}
-
             <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/terms', undefined)} target="_blank">
               <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.terms' })} />
             </ListItem>
-
             <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/protectingYourData', 
                                                                       ((organisation && organisation.tag) ? organisation.tag : undefined))} target="_blank">
               <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.protectingYourData' })} />
