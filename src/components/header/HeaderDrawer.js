@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, withStyles} from "@material-ui/core";
+import {withStyles} from "@material-ui/core";
 import { inject, observer } from "mobx-react";
 import PropTypes from 'prop-types';
 import { Divider, SwipeableDrawer, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText, ListItemAvatar } from '@material-ui/core';
@@ -8,7 +8,7 @@ import './header.css';
 import AvailabilityToggle from '../availabilityToggle/AvailabilityToggle';
 import { styles } from './Header.css.js'
 import Logo from '../utils/logo/Logo';
-import {FormattedMessage, injectIntl} from 'react-intl';
+import {injectIntl} from 'react-intl';
 import defaultPicture from '../../resources/images/placeholder_person.png';
 import UrlService from '../../services/url.service';
 import { Link, withRouter } from 'react-router-dom';
@@ -79,11 +79,10 @@ class App extends Component {
         </div>
 
         <div className={'leftMenu'}>
-
           {(auth && (organisation && organisation._id)) && (
-            <div>
+            <React.Fragment>
               {record && record._id && (
-                <div>
+               <React.Fragment>
                   <List className={'leftSubmenu'}>
                     <ListItem >
                       <ListItemAvatar>
@@ -92,23 +91,19 @@ class App extends Component {
                       <ListItemText primary={record.name || record.tag}
                         primaryTypographyProps={{ variant: 'button', noWrap: true, style: { fontWeight: 'bold', color:'white' } }} />
                     </ListItem>
-
                     <ListItem button component={Link} to={'/' + locale + '/' + organisation.tag + '/' + record.tag} onClick={(e) => {this.props.handleDisplayProfile(e, {tag: record.tag})}}>
                       <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.profile' })} />
                     </ListItem>
-
                     <ListItem>
                       <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.availability' })} />
                       <ListItemSecondaryAction>
                         <AvailabilityToggle />
                       </ListItemSecondaryAction>
                     </ListItem>
-
                   </List>
                   <Divider className={classes.divider} />
-                </div>
+               </React.Fragment>
               )}
-
               <List className={'leftSubmenu'}>
                 <ListItem onClick={this.props.handleDrawerClose} component={Link} to={'/' + locale + '/' + organisation.tag}>
                   <ListItemAvatar>
@@ -140,30 +135,32 @@ class App extends Component {
                     (organisation.premium ? intl.formatMessage({ id: 'menu.drawer.contactUsPremium' }) : intl.formatMessage({ id: 'menu.drawer.contactUs' }))
                   } />
                 </ListItem>
-                <Divider className={classes.divider} />
                 {(currentUser.orgsAndRecords && (currentUser.orgsAndRecords.length > 1) ) && (
-                  <div>
+                 <React.Fragment>
+                   <Divider className={classes.divider} />
                     <ListItem>
                       <ListItemText primary={intl.formatMessage({id: 'menu.drawer.listOrgTitle'})}
                         primaryTypographyProps={{noWrap: true, style: { fontWeight: 'bold' } }} />
                     </ListItem>
                     <OrganisationsList />
-                  </div>
+                 </React.Fragment>
                 )}
-
                 {currentUser.superadmin && (
-                  <ListItem button component={Link} to={'/' + locale + '/' + organisation.tag + '/onboard'}>
-                    <ListItemText primary={"Onboard"} />
-                  </ListItem>
+                  <React.Fragment>
+                    <Divider className={classes.divider} />
+                    <ListItem button component={Link} to={'/' + locale + '/' + organisation.tag + '/onboard'}>
+                      <ListItemText primary={"Onboard"} />
+                    </ListItem>
+                  </React.Fragment>
                 )}
               </List>
               <Divider className={classes.divider} />
-            </div>
+            </React.Fragment>
           )}
           <List className={'leftSubmenu'}>
             {!auth && (
               <React.Fragment>
-                <ListItem button component="a" href={"/" + locale + (organisation.tag ? '/' + organisation.tag : '') + '/signin'} >
+                <ListItem button component={Link} to={"/" + locale + (organisation.tag ? '/' + organisation.tag : '') + '/signin'}>
                   <ListItemText primary={intl.formatMessage({ id: 'Sign In' })} />
                 </ListItem>
                 <Divider className={classes.divider} />
@@ -180,21 +177,19 @@ class App extends Component {
             <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/terms', undefined)} target="_blank">
               <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.terms' })} />
             </ListItem>
-            <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/protectingYourData', 
+            <ListItem button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/protectingYourData',
                                                                       ((organisation && organisation.tag) ? organisation.tag : undefined))} target="_blank">
               <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.protectingYourData' })} />
             </ListItem>
-          </List>
-          <Divider className={classes.divider} />
           {auth && (
-            <div>
-              <List className={'leftSubmenu'}>
-                <ListItem button onClick={this.handleLogout} >
+            <React.Fragment>
+              <Divider className={classes.divider} />
+              <ListItem button onClick={this.handleLogout} >
                   <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.logout' })} />
-                </ListItem>
-              </List>
-            </div>
+              </ListItem>
+            </React.Fragment>
           )}
+          </List>
         </div>
         </div>
       </SwipeableDrawer>

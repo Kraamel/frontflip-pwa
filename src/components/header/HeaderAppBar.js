@@ -9,7 +9,7 @@ import HeaderToolBar from './HeaderToolBar';
 
 class HeaderAppBar extends Component {
   render() {
-    const { classes, open, auth, anchorEl, handleMobileMenuOpen, handleProfileMenuOpen } = this.props;
+    const { classes, open, auth} = this.props;
 
     return (
       <AppBar
@@ -20,9 +20,8 @@ class HeaderAppBar extends Component {
         })}
       >
         <HeaderToolBar handleDrawerOpen={this.props.handleDrawerOpen}
-          open={open} auth={auth} anchorEl={anchorEl}
-          handleMobileMenuOpen={handleMobileMenuOpen}
-          handleProfileMenuOpen={handleProfileMenuOpen} />
+          open={open} auth={auth}
+        />
       </AppBar>
     )
   }

@@ -10,18 +10,16 @@ import Logo from '../utils/logo/Logo';
 
 class HeaderToolBar extends Component {
   render() {
-    const { classes, auth, anchorEl, handleMobileMenuOpen, handleProfileMenuOpen } = this.props;
+    const { classes, auth } = this.props;
 
     return (
       <Toolbar className={classes.toolbar}>
         <Fab variant="extended" className={classes.menuButton}
                     onClick={this.props.handleDrawerOpen} 
-                    children={<Logo />} ></Fab>
+                    children={<Logo />} />
 
         {!auth && (
-          <HeaderLinks auth={auth} anchorEl={anchorEl}
-            handleMobileMenuOpen={handleMobileMenuOpen}
-            handleProfileMenuOpen={handleProfileMenuOpen} />
+          <HeaderLinks auth={auth}/>
         )}
       </Toolbar>
     )
