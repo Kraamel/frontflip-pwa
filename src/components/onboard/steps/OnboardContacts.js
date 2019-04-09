@@ -1,14 +1,14 @@
 import React from 'react'
 import {inject, observer} from "mobx-react";
+import {FormattedMessage} from "react-intl";
+
 import {withStyles, Grid, TextField, InputAdornment, IconButton, Typography} from '@material-ui/core';
 import {Clear} from '@material-ui/icons';
 import AddContactField from '../../utils/fields/AddContactField';
 import ProfileService from "../../../services/profile.service";
-import {FormattedMessage} from "react-intl";
 
 const Entities = require('html-entities').XmlEntities;
 const entities = new Entities();
-
 const styles = {
   link: {
     animation: 'linkPop ease 1s',
@@ -36,7 +36,6 @@ const styles = {
   },
 };
 
-
 class OnboardContacts extends React.Component {
   constructor(props) {
     super(props);
@@ -44,7 +43,6 @@ class OnboardContacts extends React.Component {
       links: this.props.recordStore.values.record.links || [],
       newLinkIndex: null,
     }
-
   }
   
   componentDidMount() {
@@ -69,19 +67,17 @@ class OnboardContacts extends React.Component {
     this.props.recordStore.values.record.links = this.props.recordStore.values.record.links.filter(item => {
       return !(item.type === linkToRemove.type && item.value === linkToRemove.value);
     });
-    
     this.setState({links: this.state.links.filter(item => !(item.type === linkToRemove.type && item.value === linkToRemove.value) )});
     this.props.handleSave(['links']);
   }
   
   addLink = (link) => {
-    this.props.recordStore.values.record.links.push(link);
+    // this.props.recordStore.values.record.links.push(link);
     let links = this.state.links;
     links.push(link)
     console.log('addLink:' + JSON.stringify(links))
     let length = (l) => { return l-1}
     let linkIndex = length(links.length)
-  
     this.setState({links: links, newLinkIndex: linkIndex});
   }
 
@@ -100,17 +96,6 @@ class OnboardContacts extends React.Component {
     }
   }
   
-  // setTypePattern = (pattern) => {
-  //   switch (pattern) {
-  //     case 'email':
-  //       return pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-  //     case 'phone':
-  //       return pattern = '/^(\\([0-9]{10}\\)/';
-  //     default:
-  //       return pattern = 'text';
-  //   }
-  // }
-  //
   capitalize = (string) =>
   {
     return string.charAt(0).toUpperCase() + string.slice(1);
