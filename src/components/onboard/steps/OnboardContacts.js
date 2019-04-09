@@ -77,7 +77,12 @@ class OnboardContacts extends React.Component {
   addLink = (link) => {
     this.props.recordStore.values.record.links.push(link);
     let links = this.state.links;
-    this.setState({links: links, newLinkIndex: links.length-1});
+    links.push(link)
+    console.log('addLink:' + JSON.stringify(links))
+    let length = (l) => { return l-1}
+    let linkIndex = length(links.length)
+  
+    this.setState({links: links, newLinkIndex: linkIndex});
   }
 
   getLinkByType = (typeWanted) => {
@@ -127,8 +132,7 @@ class OnboardContacts extends React.Component {
   render() {
     const {links, newLinkIndex} = this.state;
     const {classes} = this.props;
-    ProfileService.transformLinks(this.props.recordStore.values.record);
-    
+  
     return (
       <Grid container style={{minHeight: 'calc(100vh - 73px)', background: this.props.theme.palette.primary.main}} direction="column" alignItems="center">
         <Grid item xs={12} sm={8} md={6} lg={4} style={{width: '100%'}}>
@@ -136,6 +140,7 @@ class OnboardContacts extends React.Component {
               <FormattedMessage id={'onboard.yourContact'}/>
             </Typography>
             {links && links.map((link, i) => {
+              ProfileService.makeLinkIcon(link);
               link.value = entities.decode(link.value);
               return (
                 <Grid item key={i} style={{padding: 8}}>
