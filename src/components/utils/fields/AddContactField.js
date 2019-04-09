@@ -3,7 +3,7 @@ import {inject, observer} from 'mobx-react';
 import {Grid, Grow, Paper, Popper, ClickAwayListener, Fab, IconButton, withStyles, Tooltip} from '@material-ui/core'
 import {Add} from "@material-ui/icons";
 
-const styles = {
+const styles = theme =>  ({
   addButton: {
     color: 'red',
     fontWeight: 30,
@@ -15,6 +15,11 @@ const styles = {
       opacity: 1 + '!important',
       filter: 'brightness(100%)!important'
     }
+  },
+  tip: {
+    fontSize: 15,
+    backgroundColor: theme.palette.primary.dark,
+    color: 'white',
   },
   paper: {
     borderRadius: 30,
@@ -40,7 +45,7 @@ const styles = {
       margin: 'auto',
     }
   }
-};
+});
 
 class AddContactField extends React.Component {
   constructor(props) {
@@ -110,10 +115,10 @@ class AddContactField extends React.Component {
                 <Paper className={classes.paper}>
                   <ClickAwayListener onClickAway={this.handleClose}>
                     <Grid container justify={'center'} alignItems={'center'} spacing={8}>
-                      {linkName.map((name, i) => {
+                      {linkName.map((name, index) => {
                         return (
-                          <Grid item key={i}>
-                            <Tooltip title={this.props.capitalize(name)}>
+                          <Grid item key={index}>
+                            <Tooltip title={this.props.capitalize(name)} classes={{ tooltip: classes.tip}}>
                               <IconButton onClick={() => this.addLink(name)} label={name}>
                                 <i className={classes.contactButton + " fa fa-" + this.getIcon(name)}/>
                               </IconButton>
