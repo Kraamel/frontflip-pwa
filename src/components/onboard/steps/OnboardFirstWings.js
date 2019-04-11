@@ -137,6 +137,10 @@ class OnboardFirstWings extends React.Component {
             <ArrowRight fontSize="inherit" />
           </Button>
         </Hidden>
+        <Hidden xsDown>
+          <div className={classes.transparentGradientBoxLeft}/>
+          <div className={classes.transparentGradientBoxRight}/>
+        </Hidden>
         <ul className={classNames(classes.firstWingsList, ''+scrollableClass)} >
           {firstWings.length > 0 && firstWings.map((hashtag, i) => {
             if(!this.shouldDisplaySuggestion(hashtag.tag)) return null;

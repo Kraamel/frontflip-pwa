@@ -204,8 +204,8 @@ class WingsSuggestions extends React.Component {
         </Hidden>
     
         <Hidden xsDown>
-          <div className={classes.transparentGradientBoxLeft}></div>
-          <div className={classes.transparentGradientBoxRight}></div>
+          <div className={classes.transparentGradientBoxLeft}/>
+          <div className={classes.transparentGradientBoxRight}/>
         </Hidden>
 
         <div className={classNames(classes.suggestionsContainer, ''+scrollableClass)} >
