@@ -38,6 +38,9 @@ const styles = theme => ({
     },
     '&:first-child()': {
       width: 40,
+    },
+    '&:disabled':{
+      color:theme.palette.primary.hover + '!important'
     }
   },
   stepperButtonHighlighted: {

@@ -84,9 +84,6 @@ export default createMuiTheme({
         transition: 'all 250ms',
         padding: '8px 24px',
       },
-      disabled: {
-        color:palette.primary.hover + '!important'
-      },
       contained: {
         '&:hover': {
           backgroundColor: palette.secondary.dark,
