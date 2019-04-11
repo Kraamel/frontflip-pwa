@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight } from '@material-ui/icons';
 
 import AlgoliaService from '../../../services/algolia.service.js';
 import {styles} from './OnboardFirstWings.css';
+import TransparentGradientBox from "../../utils/fields/TransparentGradientBox";
 
 let interval;
 let interval2;
@@ -138,8 +139,8 @@ class OnboardFirstWings extends React.Component {
           </Button>
         </Hidden>
         <Hidden xsDown>
-          <div className={classes.transparentGradientBoxLeft}/>
-          <div className={classes.transparentGradientBoxRight}/>
+          <TransparentGradientBox position='left'/>
+          <TransparentGradientBox position='right'/>
         </Hidden>
         <ul className={classNames(classes.firstWingsList, ''+scrollableClass)} >
           {firstWings.length > 0 && firstWings.map((hashtag, i) => {

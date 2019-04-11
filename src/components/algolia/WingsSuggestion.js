@@ -9,6 +9,7 @@ import { styles } from './WingsSuggestion.css.js';
 import { ArrowLeft, ArrowRight } from '@material-ui/icons';
 import './WingsSuggestion.css';
 import {FormattedMessage} from "react-intl";
+import TransparentGradientBox from '../utils/fields/TransparentGradientBox'
 
 let interval;
 let interval2;
@@ -192,7 +193,6 @@ class WingsSuggestions extends React.Component {
         <Hidden xsDown>
           <Typography variant="subtitle2" style={{padding: 16, paddingBottom:0}} ><FormattedMessage id={'wingsSuggestions'}/></Typography>
         </Hidden>
-
         <div style={{position:'relative', height: 126}}>
         <Hidden smDown>
           <Button className={classNames(classes.scrollLeft, classes.scrollButton)} onMouseDown={this.scrollLeft} onMouseUp={this.scrollStop} variant="outlined">
@@ -202,12 +202,10 @@ class WingsSuggestions extends React.Component {
             <ArrowRight fontSize="inherit" />
           </Button>
         </Hidden>
-    
         <Hidden xsDown>
-          <div className={classes.transparentGradientBoxLeft}/>
-          <div className={classes.transparentGradientBoxRight}/>
+          <TransparentGradientBox position='left'/>
+          <TransparentGradientBox position='right'/>
         </Hidden>
-
         <div className={classNames(classes.suggestionsContainer, ''+scrollableClass)} >
           {this.renderWingsList(suggestions, classes, true)}
           {this.renderWingsList(suggestions, classes, false)}
