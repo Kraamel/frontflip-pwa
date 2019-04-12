@@ -1,13 +1,13 @@
 import React from 'react'
-import { withStyles, Hidden, Button } from '@material-ui/core';
-import { inject, observer } from "mobx-react";
+import {withStyles, Hidden} from '@material-ui/core';
+import {inject, observer} from "mobx-react";
 import classNames from 'classnames';
-import { observe } from 'mobx';
-import { ArrowLeft, ArrowRight } from '@material-ui/icons';
+import {observe} from 'mobx';
 
 import AlgoliaService from '../../../services/algolia.service.js';
 import {styles} from './OnboardFirstWings.css';
 import TransparentGradientBox from "../../utils/fields/TransparentGradientBox";
+import CarouselArrows from "../../utils/buttons/CarouselArrows";
 
 let interval;
 let interval2;
@@ -23,18 +23,18 @@ class OnboardFirstWings extends React.Component {
       animationInProgress: false,
     };
   }
-
+  
   componentDidMount () {
     AlgoliaService.setAlgoliaKey(this.props.commonStore.algoliaKey);
     this.fetchFirstWings();
-
+    
     this.setState({observer: observe(this.props.commonStore, 'algoliaKey', (change) => {
-      AlgoliaService.setAlgoliaKey(this.props.commonStore.algoliaKey);
-      this.fetchFirstWings();
+        AlgoliaService.setAlgoliaKey(this.props.commonStore.algoliaKey);
+        this.fetchFirstWings();
     })});
-
+    
     this.setState({recordObserver: observe(this.props.recordStore.values, 'record', (change) => {
-      this.fetchFirstWings();
+        this.fetchFirstWings();
     })});
   }
 
@@ -45,9 +45,9 @@ class OnboardFirstWings extends React.Component {
 
   fetchFirstWings = () => {
     AlgoliaService.fetchHits('type:hashtag AND hashtags.tag:#Wings', null, null, null)
-    .then(content => {
+      .then(content => {
       if(content && !this.state.animationInProgress) this.setState({firstWings: content.hits});
-    })
+      })
   }
 
   handleAddWing = (e, tag, i) => {
@@ -90,7 +90,7 @@ class OnboardFirstWings extends React.Component {
       window.document.getElementsByClassName(this.state.scrollableClass)[0].scrollLeft -= 2;
     }.bind(this), 5);
   }
-
+  
   scrollStop =() => {
     clearInterval(interval);
     clearInterval(interval2);
@@ -127,16 +127,12 @@ class OnboardFirstWings extends React.Component {
   render() {
     const {classes, theme} = this.props;
     const { firstWings, scrollableClass } = this.state;
-
+    
     return (
       <div style={{position: 'relative'}}>
         <Hidden smDown>
-          <Button className={classNames(classes.scrollLeft, classes.scrollButton)} onMouseDown={this.scrollLeft} onMouseUp={this.scrollStop} variant="outlined">
-            <ArrowLeft fontSize="inherit" />
-          </Button>
-          <Button className={classNames(classes.scrollRight, classes.scrollButton)} onMouseDown={this.scrollRight} onMouseUp={this.scrollStop} variant="outlined">
-            <ArrowRight fontSize="inherit" />
-          </Button>
+          <CarouselArrows scrollPosition={'scrollLeft'} onMouseDown={this.scrollLeft} onMouseUp={this.scrollStop}  variant="outlined"/>
+          <CarouselArrows scrollPosition={'scrollRight'} onMouseDown={this.scrollRight} onMouseUp={this.scrollStop} variant="outlined"/>
         </Hidden>
         <Hidden xsDown>
           <TransparentGradientBox position='left'/>
@@ -146,11 +142,11 @@ class OnboardFirstWings extends React.Component {
           {firstWings.length > 0 && firstWings.map((hashtag, i) => {
             if(!this.shouldDisplaySuggestion(hashtag.tag)) return null;
             return (
-              <li onClick={(e) => { this.handleAddWing(e, hashtag.tag, i) }} className={classes.firstWing} key={i} 
-                style={this.getFirstWingsStyle(i, theme)} 
-                onMouseUp={(e) => this.handleMouseUp(e)}
-                onMouseDown={(e) => this.handleMouseDown(e)}
-                >
+              <li onClick={(e) => { this.handleAddWing(e, hashtag.tag, i) }} className={classes.firstWing} key={i}
+                  style={this.getFirstWingsStyle(i, theme)}
+                  onMouseUp={(e) => this.handleMouseUp(e)}
+                  onMouseDown={(e) => this.handleMouseDown(e)}
+              >
                 <div>
                   <img src={hashtag.picture.url} alt="Soft Wing" />
                   <div>

@@ -1,15 +1,15 @@
 import React from 'react'
-import { withStyles, Button, Hidden, Typography } from '@material-ui/core';
-import { inject, observer } from "mobx-react";
+import {inject, observer} from "mobx-react";
 import classNames from 'classnames';
-import { observe } from 'mobx';
+import {observe} from 'mobx';
+import {withStyles, Hidden, Typography} from '@material-ui/core';
 import Wings from '../utils/wing/Wing';
 import ProfileService from '../../services/profile.service';
-import { styles } from './WingsSuggestion.css.js';
-import { ArrowLeft, ArrowRight } from '@material-ui/icons';
+import {styles} from './WingsSuggestion.css.js';
 import './WingsSuggestion.css';
 import {FormattedMessage} from "react-intl";
 import TransparentGradientBox from '../utils/fields/TransparentGradientBox'
+import CarouselArrows from "../utils/buttons/CarouselArrows";
 
 let interval;
 let interval2;
@@ -114,11 +114,11 @@ class WingsSuggestions extends React.Component {
     return (
       <li key={i} className={classNames(classes.suggestion, (this.isNewSuggestions(hit.tag) ? classes.animateIn : null))} style={{animationDelay: ((i-this.state.offsetSuggestionsIndex)*0.05) +'s'}} id={hit.tag}>
         <Wings  src={ProfileService.getPicturePath(hit.picture)}
-          label={ProfileService.htmlDecode(this.getDisplayedName(hit))}
+               label={ProfileService.htmlDecode(this.getDisplayedName(hit))}
           onClick={(e) => this.handleSelectSuggestion(e, { name: hit.name || hit.tag, tag: hit.tag }, i)}
-          onMouseDown={(e) => this.handleMouseDown(e)}
-          onMouseUp={(e) => this.handleMouseUp(e)}
-          onBlur={(e) => this.handleMouseUp(e)}
+               onMouseDown={(e) => this.handleMouseDown(e)}
+               onMouseUp={(e) => this.handleMouseUp(e)}
+               onBlur={(e) => this.handleMouseUp(e)}
           className={'suggestionWing'} />
       </li>
     );
@@ -165,7 +165,7 @@ class WingsSuggestions extends React.Component {
       window.document.getElementsByClassName(this.state.scrollableClass)[0].scrollLeft -= 2;
     }.bind(this), 5);
   }
-
+  
   scrollStop =() => {
     clearInterval(interval);
     clearInterval(interval2);
@@ -185,32 +185,28 @@ class WingsSuggestions extends React.Component {
 
 
   render() {
-    const { classes } = this.props;
-    const { suggestions, scrollableClass } = this.state;
-
+    const {classes} = this.props;
+    const {suggestions, scrollableClass} = this.state;
+    
     return (
       <div ref={(el) => {this.elementNode = el}}>
         <Hidden xsDown>
           <Typography variant="subtitle2" style={{padding: 16, paddingBottom:0}} ><FormattedMessage id={'wingsSuggestions'}/></Typography>
         </Hidden>
         <div style={{position:'relative', height: 126}}>
-        <Hidden smDown>
-          <Button className={classNames(classes.scrollLeft, classes.scrollButton)} onMouseDown={this.scrollLeft} onMouseUp={this.scrollStop} variant="outlined">
-            <ArrowLeft fontSize="inherit" />
-          </Button>
-          <Button className={classNames(classes.scrollRight, classes.scrollButton)} onMouseDown={this.scrollRight} onMouseUp={this.scrollStop} variant="outlined">
-            <ArrowRight fontSize="inherit" />
-          </Button>
-        </Hidden>
-        <Hidden xsDown>
-          <TransparentGradientBox position='left'/>
-          <TransparentGradientBox position='right'/>
-        </Hidden>
+          <Hidden smDown>
+            <CarouselArrows scrollPosition={'scrollLeft'} onMouseDown={this.scrollLeft} onMouseUp={this.scrollStop} variant="outlined"/>
+            <CarouselArrows scrollPosition={'scrollRight'} onMouseDown={this.scrollRight} onMouseUp={this.scrollStop} variant="outlined"/>
+          </Hidden>
+          <Hidden xsDown>
+            <TransparentGradientBox position='left'/>
+            <TransparentGradientBox position='right'/>
+          </Hidden>
         <div className={classNames(classes.suggestionsContainer, ''+scrollableClass)} >
-          {this.renderWingsList(suggestions, classes, true)}
-          {this.renderWingsList(suggestions, classes, false)}
+            {this.renderWingsList(suggestions, classes, true)}
+            {this.renderWingsList(suggestions, classes, false)}
+          </div>
         </div>
-      </div>
       </div>
     );
   }
