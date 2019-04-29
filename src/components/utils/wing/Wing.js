@@ -5,8 +5,8 @@ import classNames from 'classnames';
 const styles = theme => ({
   wingImg: {
     height: 48,
-    width: 48,
-    margin: '-5px -6px 0 -15px',
+    width: 32,
+    margin: '-15px -6px 0 -22px',
     boxShadow: 'none',
     backgroundColor: 'transparent',
     overflow: 'visible',
@@ -71,13 +71,13 @@ const styles = theme => ({
   }
 });
 
-const Wing = ({ src, label, ...props }) => {
+const Wing = ({ src, label, color, ...props }) => {
   if (src) {
     return (
       <Chip
         avatar={<Avatar className={props.classes.wingImg} src={src} alt="wings-img"/>}
         label={label}
-        color={"primary"}
+        color={color}
         className={classNames(props.classes[props.className], (props.onDelete ? props.classes.removable : null) )}
         onClick={props.onClick}
         onDelete={props.onDelete}
@@ -91,7 +91,7 @@ const Wing = ({ src, label, ...props }) => {
     return (
       <Chip
         label={label}
-        color={"primary"}
+        color={color}
         className={classNames(props.classes[props.className], (props.onDelete ? props.classes.removable : null))}
         onClick={props.onClick}
         onDelete={props.onDelete}

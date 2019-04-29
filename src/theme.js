@@ -108,7 +108,7 @@ export default createMuiTheme({
         padding: '6px 12px',
         fontWeight: '600',
         margin: '16px 8px 4px 8px',
-        fontSize: '0.8125rem',
+        fontSize: '0.9125rem',
       },
       label: {
         '& div': {
@@ -123,7 +123,8 @@ export default createMuiTheme({
       },
       colorPrimary: {
         color: palette.primary.dark,
-        backgroundColor: palette.primary.main,
+        backgroundColor: '#e7e7ee',
+        // backgroundColor: palette.primary.main,
         '&:hover': {
           color: palette.primary.dark,
           backgroundColor: palette.primary.hover +' !important',
