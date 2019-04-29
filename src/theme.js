@@ -99,7 +99,7 @@ export default createMuiTheme({
     },
     MuiIconButton: {
       root: {
-        color: '#DDE9EB',
+        color: '#aaacbe',
         padding: 8,
       }
     },
