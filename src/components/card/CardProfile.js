@@ -18,14 +18,14 @@ const styles = theme => ({
   logo: {
     width: 240,
     height: 240,
-    marginBottom: -38,
+    marginBottom: -22,
     marginLeft: -62,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     [theme.breakpoints.down('xs')]: {
       width: 190,
       height: 190,
-      marginLeft: -49,
-      marginBottom: -25,
+      marginLeft: -56,
+      marginBottom: -10,
     },
   },
   name: {
@@ -84,10 +84,10 @@ const styles = theme => ({
     marginLeft: 100,
     paddingLeft: 82,
     minHeight: 40,
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: 'transparent',
     [theme.breakpoints.down('xs')]: {
       minHeight: 35,
-      marginLeft: 75,
+      marginLeft: 66,
       paddingLeft: 72,
     },
   },
@@ -111,11 +111,11 @@ const styles = theme => ({
   dispo: {
     position: 'absolute',
     [theme.breakpoints.down('xs')]: {
-      marginLeft: 104,
-      marginTop: 133,
+      marginLeft: 102,
+      marginTop: 148,
     },
-    marginLeft: 132,
-    marginTop: 172,
+    marginLeft: 134,
+    marginTop: 187,
   },
   available: {
     backgroundColor: 'green',
@@ -128,7 +128,7 @@ const styles = theme => ({
     backgroundPositionX: 'right',
     backgroundPositionY: 'bottom',
     borderRadius: '50%',
-    border: '8px solid white',
+    // border: '8px solid white',
     backgroundSize: '200px 200px',
     [theme.breakpoints.down('xs')]: {
       backgroundSize: '150px 150px',
