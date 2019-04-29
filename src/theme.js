@@ -124,7 +124,6 @@ export default createMuiTheme({
       colorPrimary: {
         color: palette.primary.dark,
         backgroundColor: '#e7e7ee',
-        // backgroundColor: palette.primary.main,
         '&:hover': {
           color: palette.primary.dark,
           backgroundColor: palette.primary.hover +' !important',

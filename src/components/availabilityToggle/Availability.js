@@ -6,7 +6,6 @@ const styles = theme => ({
   dispo: {
     width: 26,
     height: 26,
-    // border: '6px solid white',
     borderRadius: 30,
     backgroundColor: '#C2CACF',
     zIndex: 9000,

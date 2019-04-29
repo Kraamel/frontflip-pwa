@@ -20,7 +20,6 @@ const styles = theme => ({
     height: 240,
     marginBottom: -22,
     marginLeft: -62,
-    // backgroundColor: 'white',
     [theme.breakpoints.down('xs')]: {
       width: 190,
       height: 190,
@@ -128,7 +127,6 @@ const styles = theme => ({
     backgroundPositionX: 'right',
     backgroundPositionY: 'bottom',
     borderRadius: '50%',
-    // border: '8px solid white',
     backgroundSize: '200px 200px',
     [theme.breakpoints.down('xs')]: {
       backgroundSize: '150px 150px',
