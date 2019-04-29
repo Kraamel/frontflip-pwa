@@ -170,7 +170,7 @@ class ProfileLayout extends React.Component {
             )}
 
             <div style={{ marginTop: 16 }}>
-              <Typography variant="h5" style={{ padding: 8 }}>
+              <Typography variant="h5" style={{ padding: 8, color:'#2b2d3c'}}>
                 <FormattedMessage id={'profile.aboutMe'} />
               </Typography>
               <div className={classes.aboutMe}>
