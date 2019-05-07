@@ -78,7 +78,6 @@ export default createMuiTheme({
     //Buttons
     MuiButton: {
       root: {
-        borderRadius: 30,
         height: "56px",
         fontWeight: "600",
         transition: 'all 250ms',
@@ -146,7 +145,7 @@ export default createMuiTheme({
     MuiCard: {
       root: {
         padding: 0,
-        borderRadius: 16,
+        borderRadius: 4,
         margin: 15,
         marginLeft: 0,
         boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
@@ -216,13 +215,9 @@ export default createMuiTheme({
     MuiOutlinedInput: {
       root: {
         backgroundColor: 'white',
-        borderRadius: 30,
-        [`& fieldset`]: {
-          borderRadius: 30
-        },
+        borderRadius: 4,
       },
       input: {
-        borderRadius: 30,
         fontSize: 'large',
         color:palette.primary.dark,
       },

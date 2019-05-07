@@ -3,7 +3,7 @@ export const styles = theme => ({
     position: 'relative',
     zIndex: 1198,
     border: 'none',
-    borderRadius: 5,
+    borderRadius: 4,
     height: 50,
     background: 'rgba(255,255,255,.95)',
     display: 'flex',

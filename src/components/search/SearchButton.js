@@ -13,7 +13,7 @@ const styles = theme => ({
     right:0,
     margin: 'auto',
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 4,
     width: 100,
     padding: 16,
     textAlign: 'center',

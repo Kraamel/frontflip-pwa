@@ -36,7 +36,7 @@ export const Option = props => {
 export const customStyles = {
   control: (base, state) => ({
     ...base,
-    borderRadius: '30px',
+    borderRadius: '4px',
     boxSizing: 'border-box',
     border: state.isFocused ? "2px solid #FF0018" : "1px solid #FF0018",
     boxShadow: state.isFocused ? null : null,
@@ -51,7 +51,7 @@ export const customStyles = {
   }),
   menu: base => ({
     ...base,
-    borderRadius: '30px',
+    borderRadius: '4px',
     overflow: 'hidden',
     hyphens: "auto",
     textAlign: "center",
