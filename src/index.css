@@ -13,7 +13,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     min-height: 100%;
     /*for firefox */
-    scrollbar-color:  #DDE9EB white;
+    scrollbar-color:  #2b2d3c #2b2d3c;
 }
 
 /* width */
@@ -31,14 +31,13 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #CCCFE5;
+    background: transparent;
     border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #2B2D3C;
-    opacity: 0;
+    background: transparent;
 }
 
 a {
