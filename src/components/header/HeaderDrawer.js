@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {withStyles} from "@material-ui/core";
 import { inject, observer } from "mobx-react";
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { Divider, SwipeableDrawer, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText, ListItemAvatar } from '@material-ui/core';
 import { ChevronLeft as ChevronLeftIcon } from '@material-ui/icons';
 import './header.css';
@@ -116,13 +115,6 @@ class App extends Component {
                 </ListItem>
 
                 {(organisation.canInvite) && (
-                  <ListItem className={classes.inviteBtn} button component="a" href={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/invite', organisation.tag)} >
-                    <ListItemText primary={intl.formatMessage({ id: 'menu.drawer.invite'})}
-                                  primaryTypographyProps={{style: { fontWeight: 'bold', color: 'white', textTransform: 'uppercase' } }} />
-                    <Icon
-                      className={classNames(classes.inviteIcon, 'fa fa-plus')}
-                      fontSize="medium"
-                    />
                   <ListItem>
                     <InvitationDialog/>
                   </ListItem>
