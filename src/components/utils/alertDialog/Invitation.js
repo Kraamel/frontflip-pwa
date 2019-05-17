@@ -5,13 +5,84 @@ import {IconButton, Typography, withStyles, Grid} from "@material-ui/core";
 import DialogContent from '@material-ui/core/DialogContent';
 import Slide from '@material-ui/core/Slide';
 import classNames from 'classnames';
-import {styles} from '../../header/Header.css.js';
 import Icon from "@material-ui/core/Icon";
 import {FormattedMessage} from "react-intl";
 import {Clear, InfoRounded, FileCopy} from "@material-ui/icons";
 import {inject, observer} from "mobx-react";
 import {injectIntl} from 'react-intl';
 
+const styles = theme => ({
+  invitationBtn: {
+    backgroundColor: theme.palette.secondary.main,
+    borderRadius: 4,
+    textAlign: 'center',
+    width: '100%',
+    height: 36,
+    fontWeight: 'bold',
+    color: 'white',
+    textTransform: 'uppercase',
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.dark,
+    }
+  },
+  invitationIcon: {
+    color: 'white',
+    marginBottom: 2,
+    width: '2em',
+    fontSize: 20
+  },
+  invitationTitle: {
+    padding: 0,
+      textTransform: 'uppercase',
+      fontSize:'larger',
+      marginBottom: 16,
+      color: 'black',
+      fontWeight: '700',
+  },
+  invitationContent: {
+    padding: '0!important',
+  },
+  invitationInput: {
+    padding: 4,
+      borderStyle: 'groove',
+      fontSize: 'inherit',
+      width: '100%',
+      borderRadius: 4,
+      height: 41,
+      fontWeight: '400',
+      [theme.breakpoints.down('xs')]: {
+      width: '99%'
+    },
+    [theme.breakpoints.down(350)]: {
+      width: '96%'
+    }
+  },
+  invitationCopyBtn: {
+    minWidth: 0,
+      height: 40,
+      backgroundColor: theme.palette.secondary.main,
+      borderRadius: 4,
+      textAlign: 'center',
+      width: '99%',
+      fontWeight: 'bold',
+      color: 'white',
+      textTransform: 'uppercase',
+      '&:hover': {
+      backgroundColor: theme.palette.secondary.dark,
+    },
+    [theme.breakpoints.down(400)]: {
+      width: 10,
+        marginLeft: -1,
+    },
+    [theme.breakpoints.down(350)]: {
+      marginLeft: -8,
+    }
+  },
+  invitationPaper: {
+    margin: 8,
+      padding: 32
+  }
+})
 
 function Transition(props) {
   return <Slide direction="right" {...props} />;
@@ -66,11 +137,11 @@ class Invitation extends React.Component {
     return (
       <React.Fragment>
         <Button className={classes.invitationBtn} onClick={this.handleClickOpen}>
-          <FormattedMessage id={'menu.drawer.invitation'}/>
           <Icon
-            className={classNames(classes.invitationIcon, 'fa fa-plus')}
+            className={classNames(classes.invitationIcon, 'fa fa-user-plus')}
             fontSize="inherit"
           />
+          <FormattedMessage id={'menu.drawer.invitation'}/>
         </Button>
         <Dialog
           open={this.state.open}
