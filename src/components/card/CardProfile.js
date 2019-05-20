@@ -218,7 +218,9 @@ class CardProfile extends React.Component {
                   <Wings src={ProfileService.getPicturePath(hashtag.picture)} key={i}
                       label={ProfileService.htmlDecode(displayedName)}
                       onClick={(e) => addFilter({name: displayedName, tag: hashtag.tag, value: hashtag.tag, label: displayedName})}
-                      className={(hashtag.class ? hashtag.class : 'notHighlighted')}/>
+                      className={(hashtag.class ? hashtag.class : 'notHighlighted')}
+                         color={'primary'}
+                  />
                 )
               })}
             </Grid>
