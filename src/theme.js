@@ -7,7 +7,7 @@ export const palette = {
     dark: '#BA0012',
   },
   primary: {
-    main: '#cccfe5',
+    main: '#e4e5ec',
     dark: '#2b2d3c',
     hover: '#aaacbe',
     contrastText: '#fff',
@@ -123,6 +123,7 @@ export default createMuiTheme({
       colorPrimary: {
         color: palette.primary.dark,
         backgroundColor: 'white',
+        transition:'backgroundColor 0ms', /* mettre la même vitesse du hover partout */
         '&:hover': {
           color: palette.primary.dark,
           backgroundColor: palette.primary.hover +' !important',

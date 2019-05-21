@@ -20,12 +20,12 @@ const styles = theme => ({
   suggestion: {
     margin: 8,
     marginBottom: 20,
-    background: 'rgba(42, 44, 60, 0.44)',
-    color: 'grey',
+    background: 'rgba(42, 44, 60, 0.85)',
+    color: theme.palette.primary.main,
     transition: 'color 0ms', /* il y a un décallage d'animation avec le hover sur la couleur */
     '&:hover': {
-      color: 'white',
-      background: 'rgba(219, 219, 219, 0.68)'
+      color: theme.palette.primary.dark,
+      background: theme.palette.primary.main,
     },
     opacity: 0,
     animation: 'easeIn .6s',
