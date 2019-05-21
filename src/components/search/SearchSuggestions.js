@@ -22,7 +22,6 @@ const styles = theme => ({
     marginBottom: 20,
     background: 'rgba(42, 44, 60, 0.85)',
     color: theme.palette.primary.main,
-    transition: 'color 0ms', /* il y a un décallage d'animation avec le hover sur la couleur */
     '&:hover': {
       color: theme.palette.primary.dark,
       background: theme.palette.primary.main,

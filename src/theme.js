@@ -123,7 +123,6 @@ export default createMuiTheme({
       colorPrimary: {
         color: palette.primary.dark,
         backgroundColor: 'white',
-        transition:'backgroundColor 0ms', /* mettre la même vitesse du hover partout */
         '&:hover': {
           color: palette.primary.dark,
           backgroundColor: palette.primary.hover +' !important',
