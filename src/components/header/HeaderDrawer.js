@@ -114,7 +114,7 @@ class App extends Component {
                     primaryTypographyProps={{ variant: 'button', noWrap: true, style: { fontWeight: 'bold', color:'white' } }} />
                 </ListItem>
 
-                {(organisation.canInvite) && (
+                {(organisation.canInvite || currentUser.superadmin || (currentOrgAndRecord && currentOrgAndRecord.admin)) && (
                   <ListItem>
                     <InvitationDialog/>
                   </ListItem>
