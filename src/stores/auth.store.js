@@ -174,6 +174,21 @@ class AuthStore {
       }))
       .finally(action(() => { this.inProgress = false; }));
   }
+  
+  confirmationInvitation() {
+    this.inProgress = true;
+    this.errors = null;
+  
+    return agent.Email.confirmationInvitation(this.values.email, this.values.orgTag)
+      .then((data) => {
+        return data
+      })
+      .catch(action((err) => {
+        this.errors = err;
+        throw err;
+      }))
+      .finally(action(() => { this.inProgress = false; }));
+  }
 
   updatePassword(token, hash) {
     this.inProgress = true;

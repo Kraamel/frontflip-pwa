@@ -111,6 +111,7 @@ class Invitation extends React.Component {
   handleClickOpen = () => {
     this.requestInvitationCode();
     this.setState({open: true});
+    this.props.authStore.confirmationInvitation()
   };
 
   requestInvitationCode = () => {
