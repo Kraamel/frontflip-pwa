@@ -259,12 +259,9 @@ const Email = {
     requests.post(
       API_ROOT + '/api/emails/security/integration/' + integrationName
     ),
-  confirmationInvitation: (userEmail) =>
+  confirmationInvitation: (orgId) =>
     requests.post(
-      API_ROOT + '/api/emails/invitation/code/confirmation',
-      {
-        userEmail: userEmail,
-      }
+      API_ROOT + '/api/emails/invitation/' + orgId + '/confirmation',
     ),
 }
 

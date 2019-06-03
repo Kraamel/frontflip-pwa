@@ -179,7 +179,7 @@ class AuthStore {
     this.inProgress = true;
     this.errors = null;
   
-    return agent.Email.confirmationInvitation(this.values.email, this.values.orgTag)
+    return agent.Email.confirmationInvitation(organisationStore.values.organisation._id)
       .then((data) => {
         return data
       })
