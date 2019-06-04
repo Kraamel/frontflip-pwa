@@ -106,12 +106,12 @@ class Invitation extends React.Component {
     let copyText = document.getElementById("urlInvitation");
     copyText.select();
     document.execCommand("copy");
+    this.props.authStore.confirmationInvitation()
   }
   
   handleClickOpen = () => {
     this.requestInvitationCode();
     this.setState({open: true});
-    this.props.authStore.confirmationInvitation()
   };
 
   requestInvitationCode = () => {
