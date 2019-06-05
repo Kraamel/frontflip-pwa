@@ -106,12 +106,12 @@ class Invitation extends React.Component {
     let copyText = document.getElementById("urlInvitation");
     copyText.select();
     document.execCommand("copy");
-    this.props.authStore.confirmationInvitation()
   }
   
   handleClickOpen = () => {
     this.requestInvitationCode();
     this.setState({open: true});
+    this.props.authStore.confirmationInvitation(this.formatInvitationLink(this.state.invitationCode))
   };
 
   requestInvitationCode = () => {
@@ -159,7 +159,7 @@ class Invitation extends React.Component {
               </Typography>
             </Grid>
             <Grid item>
-              <IconButton aria-label="Close" onClick={this.handleClose} style={{marginLeft: -10, marginBottom: 10, marginTop: -10}}>
+              <IconButton aria-label="Close" onClick={this.handleClose} style={{position:'fixed', marginLeft: -4, marginTop: -32}}>
                 <Clear fontSize="small"/>
               </IconButton>
             </Grid>
@@ -170,7 +170,7 @@ class Invitation extends React.Component {
             </Typography>
             <Grid container direction={'row'} justify={'space-between'} style={{marginTop: 8}}>
               <Grid item xs={10}>
-                <input type="text" value={errorMessage || invitationCodeLink} className={classes.invitationInput} readOnly={true} id={'urlInvitation'}/>
+                <input type="text" value={errorMessage || invitationCodeLink} className={classes.invitationInput} id={'urlInvitation'} disabled={true} />
               </Grid>
               <Grid item xs={2}>
                 <Button className={classes.invitationCopyBtn} aria-label='copy' onClick={this.copyUrl}>
