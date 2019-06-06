@@ -56,7 +56,7 @@ class MenuButton extends React.Component {
   };
   
   render() {
-    const {classes, urlUpdateCover, urlEditIntro, urlEditAboutMe, urlDeleteProfile} = this.props;
+    const {classes, urlUpdateCover, urlEditIntro, urlEditAboutMe, urlDeleteProfile, urlEditContact} = this.props;
     const {open} = this.state;
     
     return (
@@ -87,6 +87,9 @@ class MenuButton extends React.Component {
                     </MenuItem>
                     <MenuItem button component="a" href={urlEditIntro}>
                       <FormattedMessage id="profile.editIntro"/>
+                    </MenuItem>
+                    <MenuItem button component="a" href={urlEditContact}>
+                      <FormattedMessage id="profile.editContacts"/>
                     </MenuItem>
                     <MenuItem button component="a" href={urlEditAboutMe}>
                       <FormattedMessage id="profile.editAboutMe"/>
