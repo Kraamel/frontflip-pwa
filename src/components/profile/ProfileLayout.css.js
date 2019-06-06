@@ -95,7 +95,7 @@ export const styles = theme => ({
     position: 'relative',
     textAlign: 'center',
     width: 24,
-    fontSize: 24
+    fontSize: 'x-large!important'
   },
   returnButton: {
     position: 'absolute',
@@ -129,7 +129,7 @@ export const styles = theme => ({
   },
   
   name: {
-    marginLeft: 24,
+    marginLeft: 16,
   },
   aboutMe: {
     padding: 8,
