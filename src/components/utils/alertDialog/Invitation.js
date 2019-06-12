@@ -177,7 +177,7 @@ class Invitation extends React.Component {
             </Typography>
             <Grid container direction={'row'} justify={'space-between'} style={{marginTop: 8}}>
               <Grid item xs={10}>
-                <input type="text" value={errorMessage || invitationCodeLink} className={classes.invitationInput} id={'urlInvitation'} disabled={true} />
+                <input type="text" value={errorMessage || invitationCodeLink} className={classes.invitationInput} id={'urlInvitation'} readOnly={true} />
               </Grid>
               <Grid item xs={2}>
                 <Button className={classes.invitationCopyBtn} aria-label='copy' onClick={this.copyUrl}>
