@@ -100,6 +100,10 @@ class Invitation extends React.Component {
     var orgTag = this.props.organisationStore.values.organisation.tag;
     var security = (process.env.NODE_ENV === 'development' ? 'http://' : 'https://');
     return security + process.env.REACT_APP_HOST + '/' + locale + '/' + orgTag + '/signin/' + code;
+    if (process.env.NODE_ENV === 'development') {
+      return 'http://' + process.env.REACT_APP_HOST + '/' + locale + '/' + orgTag + '/signup/' + code;
+    }
+    return 'https://' + orgTag + '.wingzy/' + locale + '/code/' + code
   }
 
   copyUrl = () => {
@@ -109,21 +113,26 @@ class Invitation extends React.Component {
   }
   
   handleClickOpen = () => {
-    this.requestInvitationCode();
+    this.requestInvitationCode()
+      .then(() => this.props.authStore.confirmationInvitation(this.formatInvitationLink(this.state.invitationCode)))
     this.setState({open: true});
-    this.props.authStore.confirmationInvitation(this.formatInvitationLink(this.state.invitationCode))
   };
 
   requestInvitationCode = () => {
+    return new Promise((resolve, reject) => {
     var orgId = this.props.organisationStore.values.organisation._id;
     if(orgId)
       this.props.authStore.getInvitationCode(orgId)
       .then(invitationCode => {
-        this.setState({invitationCode: invitationCode.code});
+           return this.setState({invitationCode: invitationCode.code}, () => resolve());
       }).catch(e => {
         console.error(e);
         this.setState({errorMessage: this.props.intl.formatMessage({ id: 'invitation.get.error' })})
+          reject(e);
       });
+    else
+      resolve();
+    })
   }
   
   handleClose = () => {
