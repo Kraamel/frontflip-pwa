@@ -104,6 +104,7 @@ class ProfileLayout extends React.Component {
               {canEdit && (
                 <MenuButton urlUpdateCover={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/cover/id/' + currentHit.objectID, orgTag)}
                             urlEditIntro={'/' + locale + '/' + orgTag + '/onboard/intro/edit/' + currentHit.objectID}
+                            urlEditContact={'/' + locale + '/' + orgTag + '/onboard/contacts/edit/' + currentHit.objectID}
                             urlEditAboutMe={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/about/id/' + currentHit.objectID, orgTag)}
                             urlDeleteProfile={UrlService.createUrl(process.env.REACT_APP_HOST_BACKFLIP, '/admin/record/delete/' + currentHit.objectID, orgTag)}
                 />
@@ -140,16 +141,6 @@ class ProfileLayout extends React.Component {
               )
             })}
           </Grid>
-          {canEdit && (
-            <Grid item xs={12} style={{ position: 'relative' }}>
-              <Button variant="text" className={classes.button} style={{ color: theme.palette.secondary.main, fontWeight: 'bold' }}
-                      href={'/' + locale + '/' + orgTag + '/onboard/contacts/edit/' + currentHit.objectID}>
-                <div href={''} className={classNames(classes.contactIcon, "fa fa-plus")} style={{ color: theme.palette.secondary.main }}></div>
-                <FormattedMessage id="profile.addContacts" />
-              </Button>
-            </Grid>
-          )}
-
         </Grid>
         <Grid container item xs={12} sm={6} lg={9} className={classes.hashtagsPart}>
           <Grid item xs={12} className={classes.minHeightPossible}>
