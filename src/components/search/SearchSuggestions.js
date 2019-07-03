@@ -58,6 +58,7 @@ const styles = theme => ({
       height: 'auto',
       textAlign: 'center',
       objectFit: 'cover',
+      borderRadius: 5
     }
   }
 });
